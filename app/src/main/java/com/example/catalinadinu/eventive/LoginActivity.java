@@ -16,8 +16,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        cardConectare = findViewById(R.id.id_conectare);
-        skipConectare = findViewById(R.id.id_skipConectare);
+        cardConectare = findViewById(R.id.login_conectare);
+        skipConectare = findViewById(R.id.login_skipConectare);
 
         skipConectare.setOnClickListener(new View.OnClickListener() {
             @Override
