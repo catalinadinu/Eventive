@@ -7,6 +7,14 @@
     tools:context=".LoginActivity"
     android:background="#ffffff">
 
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/signup_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="120dp"
