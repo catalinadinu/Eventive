@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "67456172292",
+    "firebase_url": "https://eventive-app-6cdf3.firebaseio.com",
+    "project_id": "eventive-app-6cdf3",
+    "storage_bucket": "eventive-app-6cdf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67456172292:android:3cddd741058ed4ad",
+        "android_client_info": {
+          "package_name": "com.example.catalinadinu.eventive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67456172292-61ejtbclfe2i8rgq8gagn449rt8p30t9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.catalinadinu.eventive",
+            "certificate_hash": "865dc490585bd4422860b79cd86a983f192ba680"
+          }
+        },
+        {
+          "client_id": "67456172292-fq8ivdegr2lgdkhrblqvop7l47q5hu2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmevUpQLsHzRJMFueRKerI5BPApIYGWSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67456172292-fq8ivdegr2lgdkhrblqvop7l47q5hu2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
