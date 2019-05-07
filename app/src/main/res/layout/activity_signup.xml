@@ -72,7 +72,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="173dp"
+        android:layout_marginBottom="110dp"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="25dp"
         app:cardElevation="10dp">
@@ -100,11 +100,62 @@
         android:id="@+id/signup_conectare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="87dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="43dp"
         android:fontFamily="casual"
+        android:gravity="center"
         android:text="Ai deja un cont? Conecteaza-te!"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <RadioGroup
+        android:id="@+id/signup_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_textTipUtilizator"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/signup_client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="casual"
+            android:text="Client"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <RadioButton
+            android:id="@+id/signup_furnizor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/signup_radioGroup"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:text="Furnizor de servicii"
+            android:textColor="@color/colorPrimaryDark" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/signup_textTipUtilizator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_confirmPassword"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="0dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Selectati tipul de utilizator. :)"
         android:textColor="@color/colorPrimaryDark" />
 
 </RelativeLayout>
