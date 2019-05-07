@@ -13,20 +13,24 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="39dp">
 
             <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
+                android:id="@+id/dash_contulMeu"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
-                android:gravity="center"
+                android:foregroundGravity="right"
+                android:gravity="end"
                 android:orientation="vertical"
                 android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:gravity="end"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -72,422 +76,422 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_locatie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_locatie"/>
+                        android:src="@drawable/icon_locatie" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Locatie"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_catering"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_catering"/>
+                        android:src="@drawable/icon_catering" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Catering"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_decoratiuni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_decoratiuni"/>
+                        android:src="@drawable/icon_decoratiuni" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Decoratiuni"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_muzica"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_muzica"/>
+                        android:src="@drawable/icon_muzica" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Muzica"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_fotoVideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_foto_video"/>
+                        android:src="@drawable/icon_foto_video" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Foto-Video"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_personal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_personal"/>
+                        android:src="@drawable/icon_personal" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Personal"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_ceremonii"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_ceremonii_religioase"/>
+                        android:src="@drawable/icon_ceremonii_religioase" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Ceremonii religioase"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_aranjamenteFlorale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_flori"/>
+                        android:src="@drawable/icon_flori" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Aranjamente florale"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_papetarie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_papetarie"/>
+                        android:src="@drawable/icon_papetarie" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Papetarie"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_animatie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_animatie_si_divertisment"/>
+                        android:src="@drawable/icon_animatie_si_divertisment" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Animatie si divertisment"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_marturii"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_ceremonii_religioase"/>
+                        android:src="@drawable/icon_ceremonii_religioase" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Marturii si cadouri"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/dash_altele"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardBackgroundColor="@color/colorPrimary"
-                >
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_altele"/>
+                        android:src="@drawable/icon_altele" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="casual"
                         android:text="Altele"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
-                        android:fontFamily="casual"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
