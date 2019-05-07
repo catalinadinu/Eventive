@@ -9,15 +9,19 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.catalinadinu.eventive.Clase.Utilizator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
     private ProgressBar progressBar;
@@ -26,6 +30,10 @@ public class SignupActivity extends AppCompatActivity {
     private EditText parola;
     private EditText confirmareParola;
     private CardView inregistrare;
+    private RadioButton tipClient, tipFurnizor;
+    private RadioGroup radioGroup;
+
+    private TextView varianteCont;
 
     private FirebaseAuth mAuth;
 
@@ -57,12 +65,28 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+
+        tipClient = findViewById(R.id.signup_client);
+        tipFurnizor = findViewById(R.id.signup_furnizor);
+
+        varianteCont = findViewById(R.id.signup_textTipUtilizator);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() != null){
+//            user deja autentificat
+        }
+
     }
 
     public void inregistrareUtilizator(){
-        String textMail = mail.getText().toString().trim();
-        String textParola = parola.getText().toString().trim();
+        final String textMail = mail.getText().toString().trim();
+        final String textParola = parola.getText().toString().trim();
         String textConfirmareParola = confirmareParola.getText().toString().trim();
+        final String tipUtilizator;
 
         if(textMail.isEmpty()){
             mail.setError("Introduceti o adresa email.");
@@ -100,35 +124,57 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
+        if (!tipClient.isChecked() && !tipFurnizor.isChecked())
+        {
+            varianteCont.setError("Selectati o varianta.");
+            varianteCont.requestFocus();
+            return;
+        }
+
+        if(tipClient.isChecked()){
+            tipUtilizator="client";
+        }
+        else {
+            tipUtilizator="furnizor";
+        }
+
         progressBar.setVisibility(View.VISIBLE);
 
         mAuth.createUserWithEmailAndPassword(textMail, textParola).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Inregistrarea s-a efectuat cu succes!", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
-                }
-                else {
-                    if(task.getException() instanceof FirebaseAuthUserCollisionException){
-                        Toast.makeText(getApplicationContext(), "Acest email este deja asociat unui cont.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
 
+                if(task.isSuccessful()){
+                    Utilizator user = new Utilizator(textMail, textParola, tipUtilizator);
+
+                    FirebaseDatabase.getInstance().getReference("Utilizatori")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressBar.setVisibility(View.GONE);
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), "Inregistrarea s-a efectuat cu succes!", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        if(task.getException() instanceof FirebaseAuthUserCollisionException){
+                                            Toast.makeText(getApplicationContext(), "Acest email este deja asociat unui cont.", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                            });
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        updateUI(currentUser); --nu merge functia asta, sa dea boala in ea
-//    }
 
 }
+
