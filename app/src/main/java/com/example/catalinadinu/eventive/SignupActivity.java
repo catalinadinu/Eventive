@@ -143,7 +143,7 @@ public class SignupActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(textMail, textParola).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
+                progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     Utilizator user = new Utilizator(textMail, textParola, tipUtilizator);
 
@@ -158,12 +158,16 @@ public class SignupActivity extends AppCompatActivity {
                                     }
                                     else {
                                         if(task.getException() instanceof FirebaseAuthUserCollisionException){
+                                            progressBar.setVisibility(View.GONE);
                                             Toast.makeText(getApplicationContext(), "Acest email este deja asociat unui cont.", Toast.LENGTH_SHORT).show();
                                         }
                                         else{
+                                            progressBar.setVisibility(View.GONE);
                                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
+
+
                                 }
                             });
                 }

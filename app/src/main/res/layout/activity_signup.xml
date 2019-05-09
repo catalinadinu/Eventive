@@ -35,7 +35,7 @@
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:fontFamily="casual"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textAlignment="viewStart"
         android:textSize="16dp" />
@@ -50,7 +50,7 @@
         android:drawableLeft="@drawable/ic_action_password"
         android:ems="10"
         android:fontFamily="casual"
-        android:hint="Parola"
+        android:hint="@string/parola"
         android:inputType="textPassword" />
 
     <EditText
@@ -63,7 +63,7 @@
         android:drawableLeft="@drawable/ic_action_password"
         android:ems="10"
         android:fontFamily="casual"
-        android:hint="Confirma parola"
+        android:hint="@string/confirma_parola"
         android:inputType="textPassword" />
 
     <android.support.v7.widget.CardView
@@ -89,7 +89,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="casual"
-                android:text="Inregistreaza-te!"
+                android:text="@string/inregistreaza_te"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -108,7 +108,7 @@
         android:layout_marginBottom="43dp"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="Ai deja un cont? Conecteaza-te!"
+        android:text="@string/ai_deja_un_cont_conecteaza_te"
         android:textColor="@color/colorPrimaryDark" />
 
     <RadioGroup
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:fontFamily="casual"
-            android:text="Client"
+            android:text="@string/client"
             android:textColor="@color/colorPrimaryDark" />
 
         <RadioButton
@@ -139,7 +139,7 @@
             android:layout_alignStart="@+id/signup_radioGroup"
             android:layout_weight="1"
             android:fontFamily="casual"
-            android:text="Furnizor de servicii"
+            android:text="@string/furnizor_de_servicii"
             android:textColor="@color/colorPrimaryDark" />
     </RadioGroup>
 
@@ -155,7 +155,7 @@
         android:layout_marginEnd="0dp"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="Selectati tipul de utilizator. :)"
+        android:text="@string/selectati_tipul_de_utilizator"
         android:textColor="@color/colorPrimaryDark" />
 
 </RelativeLayout>

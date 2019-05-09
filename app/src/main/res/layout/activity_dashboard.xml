@@ -45,7 +45,7 @@
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
                         android:gravity="center"
-                        android:text="Contul meu"
+                        android:text="@string/contul_meu"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Locatie"
+                        android:text="@string/locatie"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Catering"
+                        android:text="@string/catering"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Decoratiuni"
+                        android:text="@string/decoratiuni"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -208,7 +208,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Muzica"
+                        android:text="@string/muzica"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -243,7 +243,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Foto-Video"
+                        android:text="@string/foto_video"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Personal"
+                        android:text="@string/personal"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -313,7 +313,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Ceremonii religioase"
+                        android:text="@string/ceremonii_religioase"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -348,7 +348,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Aranjamente florale"
+                        android:text="@string/aranjamente_florale"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -383,7 +383,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Papetarie"
+                        android:text="@string/papetarie"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -418,7 +418,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Animatie si divertisment"
+                        android:text="@string/animatie_si_divertisment"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -453,7 +453,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Marturii si cadouri"
+                        android:text="@string/marturii_si_cadouri"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -488,7 +488,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="Altele"
+                        android:text="@string/altele"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />

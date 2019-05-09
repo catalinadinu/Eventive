@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Eventive</string>
+    <string name="deconectare">Deconectare</string>
+    <string name="informatii_utile_aplicatie">Informatii utile aplicatie</string>
+    <string name="setari_cont">Setari cont</string>
+    <string name="evenimentele_mele">Evenimentele mele</string>
+    <string name="bun_venit_in_cont">Bun venit in cont! :)</string>
+    <string name="email">Email</string>
+    <string name="parola">Parola</string>
+    <string name="confirma_parola">Confirma parola</string>
+    <string name="inregistreaza_te">Inregistreaza-te!</string>
+    <string name="ai_deja_un_cont_conecteaza_te">Ai deja un cont? Conecteaza-te!</string>
+    <string name="client">Client</string>
+    <string name="furnizor_de_servicii">Furnizor de servicii</string>
+    <string name="selectati_tipul_de_utilizator">Selectati tipul de utilizator. :)</string>
+    <string name="contul_meu">Contul meu</string>
+    <string name="locatie">Locatie</string>
+    <string name="catering">Catering</string>
+    <string name="decoratiuni">Decoratiuni</string>
+    <string name="muzica">Muzica</string>
+    <string name="foto_video">Foto-Video</string>
+    <string name="personal">Personal</string>
+    <string name="ceremonii_religioase">Ceremonii religioase</string>
+    <string name="aranjamente_florale">Aranjamente florale</string>
+    <string name="papetarie">Papetarie</string>
+    <string name="animatie_si_divertisment">Animatie si divertisment</string>
+    <string name="marturii_si_cadouri">Marturii si cadouri</string>
+    <string name="altele">Altele</string>
+    <string name="conecteaza_te">Conecteaza-te!</string>
+    <string name="sari_peste"><![CDATA[Sari peste >]]></string>
+    <string name="nu_ai_un_cont_inregistreaza_te">Nu ai un cont? Inregistreaza-te!</string>
 </resources>

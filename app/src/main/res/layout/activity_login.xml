@@ -35,7 +35,7 @@
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:fontFamily="casual"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textAlignment="viewStart"
         android:textSize="16dp" />
@@ -51,7 +51,7 @@
         android:drawableLeft="@drawable/ic_action_password"
         android:ems="10"
         android:fontFamily="casual"
-        android:hint="Parola"
+        android:hint="@string/parola"
         android:inputType="textPassword" />
 
     <android.support.v7.widget.CardView
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="casual"
-                android:text="Conecteaza-te!"
+                android:text="@string/conecteaza_te"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -90,7 +90,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
         android:fontFamily="casual"
-        android:text="Sari peste >"
+        android:text="@string/sari_peste"
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView
@@ -101,6 +101,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="79dp"
         android:fontFamily="casual"
-        android:text="Nu ai un cont? Inregistreaza-te!"
+        android:text="@string/nu_ai_un_cont_inregistreaza_te"
         android:textColor="@color/colorPrimaryDark" />
 </RelativeLayout>
