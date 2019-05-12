@@ -32,6 +32,13 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
+//    FirebaseDatabase database = FirebaseDatabase.getInstance();
+//    DatabaseReference myRef = database.getReference("Utilizatori").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tipUtilizator");
+
+    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference userRef = rootRef.child("Utilizatori").child(uid);
+
     String tipUtilizator;
 
     @Override
@@ -74,13 +81,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public void conectareUtilizator(){
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Utilizatori").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tipUtilizator");
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("Utilizatori").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tipUtilizator");
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                tipUtilizator = dataSnapshot.getValue(String.class);
+                tipUtilizator = dataSnapshot.child("tipUtilizator").getValue().toString();
 
                 String textMail = email.getText().toString().trim();
                 String textParola = parola.getText().toString().trim();
