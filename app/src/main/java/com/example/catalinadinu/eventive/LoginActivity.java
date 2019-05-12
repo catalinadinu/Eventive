@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressBar;
@@ -26,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText parola;
 
     FirebaseAuth mAuth;
+
+    String tipUtilizator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,48 +73,76 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void conectareUtilizator(){
-        String textMail = email.getText().toString().trim();
-        String textParola = parola.getText().toString().trim();
 
-        if(textMail.isEmpty()){
-            email.setError("Introduceti o adresa email.");
-            email.requestFocus();
-            return;
-        }
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Utilizatori").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tipUtilizator");
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(textMail).matches()){
-            email.setError("Introduceti o adresa email valida.");
-            email.requestFocus();
-            return;
-        }
-
-        if(textParola.isEmpty()){
-            parola.setError("Introduceti o parola");
-            parola.requestFocus();
-            return;
-        }
-
-        if(textParola.length()<6){
-            parola.setError("Introduceti o parola de minim 6 caractere.");
-            parola.requestFocus();
-            return;
-        }
-
-        progressBar.setVisibility(View.VISIBLE);
-
-        mAuth.signInWithEmailAndPassword(textMail, textParola).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
-                if(task.isSuccessful()){
-                    Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(dashboardIntent);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                tipUtilizator = dataSnapshot.getValue(String.class);
+
+                String textMail = email.getText().toString().trim();
+                String textParola = parola.getText().toString().trim();
+
+                if(textMail.isEmpty()){
+                    email.setError("Introduceti o adresa email.");
+                    email.requestFocus();
+                    return;
                 }
-                else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(textMail).matches()){
+                    email.setError("Introduceti o adresa email valida.");
+                    email.requestFocus();
+                    return;
                 }
+
+                if(textParola.isEmpty()){
+                    parola.setError("Introduceti o parola");
+                    parola.requestFocus();
+                    return;
+                }
+
+                if(textParola.length()<6){
+                    parola.setError("Introduceti o parola de minim 6 caractere.");
+                    parola.requestFocus();
+                    return;
+                }
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                mAuth.signInWithEmailAndPassword(textMail, textParola).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
+                        if(task.isSuccessful()){
+
+                            if(tipUtilizator.equals("client")){
+                                Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+                                dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(dashboardIntent);
+                            }
+                            if(tipUtilizator.equals("furnizor")){
+                                Intent dashboardFurnizorIntent = new Intent(LoginActivity.this, DashboardFurnizorActivity.class);
+                                dashboardFurnizorIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(dashboardFurnizorIntent);
+                            }
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
             }
         });
+
+
+
     }
 }
