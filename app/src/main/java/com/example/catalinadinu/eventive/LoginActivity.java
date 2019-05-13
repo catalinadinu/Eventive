@@ -81,9 +81,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void conectareUtilizator(){
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("Utilizatori").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tipUtilizator");
-
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
