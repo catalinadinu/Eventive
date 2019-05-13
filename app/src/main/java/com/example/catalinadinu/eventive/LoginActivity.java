@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,14 +31,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText parola;
 
-//    private Task<AuthResult> ar;
-
     FirebaseAuth mAuth;
+//    FirebaseAuth user;
 
-//    FirebaseDatabase database = FirebaseDatabase.getInstance();
-//    DatabaseReference myRef = database.getReference("Utilizatori").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tipUtilizator");
-
-    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference userRef = rootRef.child("Utilizatori");
 
@@ -56,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.login_username);
         parola = findViewById(R.id.login_password);
         progressBar = findViewById(R.id.signup_progressBar);
+
+        FirebaseAuth.getInstance().signOut();
 
         skipConectare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-//                        ar.getResult().getUser().getUid();//cautare tip utilizator dupa tip dupa logare
                         tipUtilizator = dataSnapshot.child(task.getResult().getUser().getUid()).child("tipUtilizator").getValue().toString();
 
                         progressBar.setVisibility(View.GONE);

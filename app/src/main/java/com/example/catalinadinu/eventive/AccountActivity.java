@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,7 +17,7 @@ public class AccountActivity extends AppCompatActivity {
     private CardView evenimenteleMele, setari, info, deconectare;
     private FirebaseAuth.AuthStateListener authStateListener;
 
-
+    private TextView textWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +28,21 @@ public class AccountActivity extends AppCompatActivity {
         setari = findViewById(R.id.cont_setari);
         info = findViewById(R.id.cont_info);
         deconectare = findViewById(R.id.cont_deconectare);
+        textWelcome = findViewById(R.id.cont_textWelcome);
 
+        String stringWelcome = "Bun venit in cont, " + FirebaseAuth.getInstance().getCurrentUser().getEmail() + "! :)";
 
+        textWelcome.setText(stringWelcome);
 
         deconectare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 FirebaseAuth.getInstance().signOut();
+                finish();
                 Intent intentDeconectare = new Intent(AccountActivity.this, LoginActivity.class);
                 intentDeconectare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentDeconectare);
-//                FirebaseAuth.getInstance().updateCurrentUser(null);
             }
         });
 
