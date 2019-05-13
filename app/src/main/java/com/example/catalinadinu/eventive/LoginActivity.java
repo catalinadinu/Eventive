@@ -30,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText parola;
 
+//    private Task<AuthResult> ar;
+
     FirebaseAuth mAuth;
 
 //    FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference userRef = rootRef.child("Utilizatori").child(uid);
+    DatabaseReference userRef = rootRef.child("Utilizatori");
 
     String tipUtilizator;
 
@@ -80,11 +82,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void conectareUtilizator(){
-
+        tipUtilizator=null;
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                tipUtilizator = dataSnapshot.child("tipUtilizator").getValue().toString();
+            public void onDataChange(final DataSnapshot dataSnapshot) {
 
                 String textMail = email.getText().toString().trim();
                 String textParola = parola.getText().toString().trim();
@@ -118,6 +119,10 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(textMail, textParola).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+//                        ar.getResult().getUser().getUid();//cautare tip utilizator dupa tip dupa logare
+                        tipUtilizator = dataSnapshot.child(task.getResult().getUser().getUid()).child("tipUtilizator").getValue().toString();
+
                         progressBar.setVisibility(View.GONE);
                         if(task.isSuccessful()){
 
