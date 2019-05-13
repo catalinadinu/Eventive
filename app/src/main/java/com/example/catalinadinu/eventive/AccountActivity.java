@@ -37,6 +37,7 @@ public class AccountActivity extends AppCompatActivity {
                 Intent intentDeconectare = new Intent(AccountActivity.this, LoginActivity.class);
                 intentDeconectare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentDeconectare);
+//                FirebaseAuth.getInstance().updateCurrentUser(null);
             }
         });
 

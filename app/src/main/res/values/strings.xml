@@ -30,4 +30,7 @@
     <string name="sari_peste"><![CDATA[Sari peste >]]></string>
     <string name="nu_ai_un_cont_inregistreaza_te">Nu ai un cont? Inregistreaza-te!</string>
     <string name="serviciile_mele">Serviciile mele</string>
+    <string name="stergere">Stergere</string>
+    <string name="denumire">Denumire</string>
+    <string name="pret">Pret</string>
 </resources>
