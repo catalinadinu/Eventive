@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
+import com.example.catalinadinu.eventive.Clase.Const;
+
 public class DashboardActivity extends AppCompatActivity {
     private CardView contulMeu;
+    private String tipUtilizator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,12 +18,20 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         contulMeu = findViewById(R.id.dash_contulMeu);
+        Intent intentPreluareTipUtilizator = getIntent();
+        tipUtilizator = intentPreluareTipUtilizator.getStringExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH);
 
         contulMeu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCont = new Intent(DashboardActivity.this, AccountActivity.class);
-                startActivity(intentCont);
+                if(tipUtilizator.toLowerCase().equals("client")){
+                    Intent intentCont = new Intent(DashboardActivity.this, ContClientActivity.class);
+                    startActivity(intentCont);
+                }
+                if(tipUtilizator.toLowerCase().equals("furnizor")){
+                    Intent intentCont = new Intent(DashboardActivity.this, ContFurnizorActivity.class);
+                    startActivity(intentCont);
+                }
             }
         });
     }

@@ -20,12 +20,13 @@
             android:src="@drawable/eventive_cube" />
 
         <TextView
-            android:id="@+id/cont_textWelcomeClient"
+            android:id="@+id/cont_textWelcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
+            android:text="@string/bun_venit_in_cont"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
@@ -41,7 +42,7 @@
             android:rowCount="6">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cont_listaEvenimente"
+                android:id="@+id/furnizor_listaServicii"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
@@ -61,14 +62,14 @@
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_eveniment" />
+                        android:src="@drawable/icons_produs" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="casual"
-                        android:text="@string/evenimentele_mele"
+                        android:text="@string/serviciile_mele"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="18sp" />
@@ -77,7 +78,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cont_setari"
+                android:id="@+id/furnizor_setari"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
@@ -113,7 +114,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cont_info"
+                android:id="@+id/furnizor_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
@@ -149,7 +150,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cont_deconectare"
+                android:id="@+id/furnizor_deconectare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"

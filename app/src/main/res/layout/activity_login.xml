@@ -91,7 +91,9 @@
         android:layout_marginBottom="28dp"
         android:fontFamily="casual"
         android:text="@string/sari_peste"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/login_contNou"
@@ -102,5 +104,7 @@
         android:layout_marginBottom="79dp"
         android:fontFamily="casual"
         android:text="@string/nu_ai_un_cont_inregistreaza_te"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 </RelativeLayout>

@@ -38,7 +38,9 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textAlignment="viewStart"
-        android:textSize="16dp" />
+        android:textSize="16dp"
+        android:textColorLink="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/signup_password"
@@ -51,7 +53,9 @@
         android:ems="10"
         android:fontFamily="casual"
         android:hint="@string/parola"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColorLink="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/signup_confirmPassword"
@@ -64,7 +68,9 @@
         android:ems="10"
         android:fontFamily="casual"
         android:hint="@string/confirma_parola"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColorLink="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/signup_inregistrare"

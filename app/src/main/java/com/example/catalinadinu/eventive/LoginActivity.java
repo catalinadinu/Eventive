@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.catalinadinu.eventive.Clase.Const;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -124,16 +125,21 @@ public class LoginActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         if(task.isSuccessful()){
 
-                            if(tipUtilizator.equals("client")){
-                                Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-                                dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(dashboardIntent);
-                            }
-                            if(tipUtilizator.equals("furnizor")){
-                                Intent dashboardFurnizorIntent = new Intent(LoginActivity.this, DashboardFurnizorActivity.class);
-                                dashboardFurnizorIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(dashboardFurnizorIntent);
-                            }
+                            Intent intentDashboard = new Intent(LoginActivity.this, DashboardActivity.class);
+                            intentDashboard.putExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH, tipUtilizator);
+                            intentDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intentDashboard);
+
+//                            if(tipUtilizator.equals("client")){
+//                                Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+//                                dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                startActivity(dashboardIntent);
+//                            }
+//                            if(tipUtilizator.equals("furnizor")){
+//                                Intent dashboardFurnizorIntent = new Intent(LoginActivity.this, ContFurnizorActivity.class);
+//                                dashboardFurnizorIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                startActivity(dashboardFurnizorIntent);
+//                            }
                         }
                         else {
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
