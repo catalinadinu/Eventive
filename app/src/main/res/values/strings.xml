@@ -33,4 +33,7 @@
     <string name="stergere">Stergere</string>
     <string name="denumire">Denumire</string>
     <string name="pret">Pret</string>
+    <string name="denumire_furnizor">Furnizor:</string>
+    <string name="nu_exista_date">Nu exista date.</string>
+    <string name="adauga_produsul_sau_serviciul_tau">Adauga produsul sau serviciul tau!</string>
 </resources>
