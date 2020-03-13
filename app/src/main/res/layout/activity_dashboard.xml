@@ -67,6 +67,7 @@
             android:src="@drawable/black_on_white_motto" />
 
         <GridLayout
+            android:background="#ffffff"
             android:layout_marginBottom="24dp"
             android:columnCount="2"
             android:rowCount="6"
@@ -446,7 +447,7 @@
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/icon_ceremonii_religioase" />
+                        android:src="@drawable/icon_marturii" />
 
                     <TextView
                         android:layout_width="match_parent"

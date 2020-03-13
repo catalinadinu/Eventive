@@ -28,19 +28,19 @@
     <EditText
         android:id="@+id/signup_username"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="195dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:fontFamily="casual"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textAlignment="viewStart"
-        android:textSize="16dp"
         android:textColorLink="@color/colorPrimary"
-        android:backgroundTint="@color/colorPrimaryDark"/>
+        android:textSize="16dp" />
 
     <EditText
         android:id="@+id/signup_password"
@@ -54,6 +54,7 @@
         android:fontFamily="casual"
         android:hint="@string/parola"
         android:inputType="textPassword"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorLink="@color/colorPrimary"
         android:backgroundTint="@color/colorPrimaryDark"/>
 
@@ -69,6 +70,7 @@
         android:fontFamily="casual"
         android:hint="@string/confirma_parola"
         android:inputType="textPassword"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorLink="@color/colorPrimary"
         android:backgroundTint="@color/colorPrimaryDark"/>
 

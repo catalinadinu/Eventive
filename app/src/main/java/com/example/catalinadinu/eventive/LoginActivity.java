@@ -129,17 +129,6 @@ public class LoginActivity extends AppCompatActivity {
                             intentDashboard.putExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH, tipUtilizator);
                             intentDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intentDashboard);
-
-//                            if(tipUtilizator.equals("client")){
-//                                Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-//                                dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                startActivity(dashboardIntent);
-//                            }
-//                            if(tipUtilizator.equals("furnizor")){
-//                                Intent dashboardFurnizorIntent = new Intent(LoginActivity.this, ContFurnizorActivity.class);
-//                                dashboardFurnizorIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                startActivity(dashboardFurnizorIntent);
-//                            }
                         }
                         else {
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
