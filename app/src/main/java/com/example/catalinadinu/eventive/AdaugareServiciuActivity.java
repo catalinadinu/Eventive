@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.catalinadinu.eventive.Clase.Serviciu;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AdaugareServiciuActivity extends AppCompatActivity {
     private ImageView imagineServiciu;
@@ -24,6 +26,8 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
     private CardView butonSalvare;
     private String categorieAleasaString;
 
+    private DatabaseReference root;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
+        root = FirebaseDatabase.getInstance().getReference();
         imagineServiciu = findViewById(R.id.adaugare_serviciu_imagine);
         butonAdaugareImagine = findViewById(R.id.adaugare_serviciu_buton_adaugare_imagine);
         denumireServiciu = findViewById(R.id.adaugare_serviciu_denumire_serviciu);
@@ -63,7 +68,8 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(valid()){
                     Serviciu serviciu = createServiciuFromView();
-                    Toast.makeText(AdaugareServiciuActivity.this, "Serviciu adaugat cu succes", Toast.LENGTH_SHORT).show();
+                    root.child("Servicii").child(categorieAleasaString).push().setValue(serviciu);
+                    Toast.makeText(AdaugareServiciuActivity.this, "Serviciu adaugat cu succes.", Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
