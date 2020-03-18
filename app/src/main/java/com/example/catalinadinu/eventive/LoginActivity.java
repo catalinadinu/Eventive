@@ -120,15 +120,16 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        tipUtilizator = dataSnapshot.child(task.getResult().getUser().getUid()).child("tipUtilizator").getValue().toString();
-
                         progressBar.setVisibility(View.GONE);
                         if(task.isSuccessful()){
+
+                            tipUtilizator = dataSnapshot.child(task.getResult().getUser().getUid()).child("tipUtilizator").getValue().toString();
 
                             Intent intentDashboard = new Intent(LoginActivity.this, DashboardActivity.class);
                             intentDashboard.putExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH, tipUtilizator);
                             intentDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intentDashboard);
+                            finish();
                         }
                         else {
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();

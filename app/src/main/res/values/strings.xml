@@ -3,7 +3,7 @@
     <string name="deconectare">Deconectare</string>
     <string name="informatii_utile_aplicatie">Informatii utile aplicatie</string>
     <string name="setari_cont">Setari cont</string>
-    <string name="evenimentele_mele">Evenimentele mele</string>
+    <string name="evenimentele_mele">Rezervarile mele</string>
     <string name="bun_venit_in_cont">Bun venit in cont! :)</string>
     <string name="email">Email</string>
     <string name="parola">Parola</string>
@@ -32,8 +32,28 @@
     <string name="serviciile_mele">Serviciile mele</string>
     <string name="stergere">Stergere</string>
     <string name="denumire">Denumire</string>
-    <string name="pret">Pret</string>
     <string name="denumire_furnizor">Furnizor:</string>
     <string name="nu_exista_date">Nu exista date.</string>
     <string name="adauga_produsul_sau_serviciul_tau">Adauga produsul sau serviciul tau!</string>
+    <string name="denumire_produs_serviciu">Denumire produs/serviciu</string>
+    <string name="scurta_descriere">Scurta descriere</string>
+    <string name="pret">Pret</string>
+    <string name="introduceti_pretul">Introduceti pretul</string>
+    <string name="introduceti_numele_furnizorului">Introduceti numele furnizorului</string>
+    <string name="eroare_denumire_pred_serv">Introduceti denumirea produsului sau serviciului!</string>
+
+    <string-array name="categorii">
+        <item>Locatie</item>
+        <item>Catering</item>
+        <item>Decoratiuni</item>
+        <item>Muzica</item>
+        <item>Foto - Video</item>
+        <item>Personal</item>
+        <item>Ceremonii religioase</item>
+        <item>Aranjamente florale</item>
+        <item>Papetarie</item>
+        <item>Animatie si divertisment</item>
+        <item>Marturii si cadouri</item>
+        <item>Altele</item>
+    </string-array>
 </resources>

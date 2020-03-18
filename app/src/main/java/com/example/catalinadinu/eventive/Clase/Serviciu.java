@@ -8,13 +8,23 @@ import java.util.Date;
 
 public class Serviciu implements Parcelable {
     private String denumire;
-    private String pret;
+    private String descriere;
+    private Integer pret;
     private String numeFurnizor;
     private String categorie;
     private String[] dateOcupate;
 
-    public Serviciu(String denumire, String pret, String numeFurnizor, String categorie, String[] dateOcupate) {
+    public Serviciu(String denumire, String descriere, Integer pret, String numeFurnizor, String categorie) {
         this.denumire = denumire;
+        this.descriere = descriere;
+        this.pret = pret;
+        this.numeFurnizor = numeFurnizor;
+        this.categorie = categorie;
+    }
+
+    public Serviciu(String denumire, String descriere, Integer pret, String numeFurnizor, String categorie, String[] dateOcupate) {
+        this.denumire = denumire;
+        this.descriere = descriere;
         this.pret = pret;
         this.numeFurnizor = numeFurnizor;
         this.categorie = categorie;
@@ -23,7 +33,12 @@ public class Serviciu implements Parcelable {
 
     protected Serviciu(Parcel in) {
         denumire = in.readString();
-        pret = in.readString();
+        descriere = in.readString();
+        if (in.readByte() == 0) {
+            pret = null;
+        } else {
+            pret = in.readInt();
+        }
         numeFurnizor = in.readString();
         categorie = in.readString();
         dateOcupate = in.createStringArray();
@@ -49,11 +64,19 @@ public class Serviciu implements Parcelable {
         this.denumire = denumire;
     }
 
-    public String getPret() {
+    public String getDescriere() {
+        return descriere;
+    }
+
+    public void setDescriere(String descriere) {
+        this.descriere = descriere;
+    }
+
+    public Integer getPret() {
         return pret;
     }
 
-    public void setPret(String pret) {
+    public void setPret(Integer pret) {
         this.pret = pret;
     }
 
@@ -85,12 +108,14 @@ public class Serviciu implements Parcelable {
     public String toString() {
         return "Serviciu{" +
                 "denumire='" + denumire + '\'' +
-                ", pret='" + pret + '\'' +
+                ", descriere='" + descriere + '\'' +
+                ", pret=" + pret +
                 ", numeFurnizor='" + numeFurnizor + '\'' +
                 ", categorie='" + categorie + '\'' +
                 ", dateOcupate=" + Arrays.toString(dateOcupate) +
                 '}';
     }
+
 
     @Override
     public int describeContents() {
@@ -100,7 +125,13 @@ public class Serviciu implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(denumire);
-        dest.writeString(pret);
+        dest.writeString(descriere);
+        if (pret == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(pret);
+        }
         dest.writeString(numeFurnizor);
         dest.writeString(categorie);
         dest.writeStringArray(dateOcupate);

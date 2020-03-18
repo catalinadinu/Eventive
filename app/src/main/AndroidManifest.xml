@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ServiciiActivity"></activity>
+        <activity android:name=".AdaugareServiciuActivity"></activity>
+        <activity android:name=".ServiciiActivity" />
         <activity android:name=".ContFurnizorActivity" />
         <activity android:name=".ContClientActivity" />
         <activity android:name=".MainActivity">

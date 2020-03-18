@@ -61,7 +61,7 @@ public class ServiciiAdapter extends ArrayAdapter<Serviciu> {
         }
     }
 
-    private void adaugaPret(View view, String pretServiciu){
+    private void adaugaPret(View view, Integer pretServiciu){
         TextView tv = view.findViewById(R.id.card_servicii_pret);
         if(pretServiciu != null){
             String pret = "Pret: " + pretServiciu;
