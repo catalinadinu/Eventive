@@ -31,6 +31,9 @@ public class Serviciu implements Parcelable {
         this.dateOcupate = dateOcupate;
     }
 
+    public Serviciu() {
+    }
+
     protected Serviciu(Parcel in) {
         denumire = in.readString();
         descriere = in.readString();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
+import com.example.catalinadinu.eventive.Clase.Categorii;
 import com.example.catalinadinu.eventive.Clase.Const;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -66,6 +67,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardLocatie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.LOCATIE.toString());
                 startActivity(intent);
             }
         });
@@ -73,6 +75,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardCatering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.CATERING.toString());
                 startActivity(intent);
             }
         });
@@ -80,6 +83,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardDecoretiuni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.DECORATIUNI.toString());
                 startActivity(intent);
             }
         });
@@ -87,6 +91,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardMuzica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.MUZICA.toString());
                 startActivity(intent);
             }
         });
@@ -94,6 +99,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardFotoVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.FOTO_VIDEO.toString());
                 startActivity(intent);
             }
         });
@@ -101,6 +107,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardPersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.PERSONAL.toString());
                 startActivity(intent);
             }
         });
@@ -108,6 +115,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardCeremoniiReligioase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.CEREMONII_RELIGIOASE.toString());
                 startActivity(intent);
             }
         });
@@ -115,6 +123,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardAranjamenteFlorale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.ARANJAMENTE_FLORALE.toString());
                 startActivity(intent);
             }
         });
@@ -122,6 +131,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardPapetarie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.PAPETARIE.toString());
                 startActivity(intent);
             }
         });
@@ -129,6 +139,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardAnimatie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.ANIMATIE_DIVERTISMENT.toString());
                 startActivity(intent);
             }
         });
@@ -136,6 +147,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardMarturii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.MARTURII.toString());
                 startActivity(intent);
             }
         });
@@ -143,6 +155,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardAltele.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra(Const.CHEIE_TRIMITERE_CATEGORIE_DASH_LISTA, Categorii.ALTELE.toString());
                 startActivity(intent);
             }
         });
