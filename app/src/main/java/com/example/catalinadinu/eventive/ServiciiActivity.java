@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,7 +28,6 @@ public class ServiciiActivity extends AppCompatActivity {
     private String tipUtilizator;
     private ListView listViewServicii;
     private CardView butonAdaugare;
-    private DatabaseReference mDatabase;
     private ArrayList<Serviciu> listaServicii = new ArrayList<>();
     private String categorieAleasa;
 
@@ -37,6 +37,14 @@ public class ServiciiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_servicii);
 
         initComponents();
+
+        listViewServicii.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentVizualizare = new Intent(ServiciiActivity.this, VizualizareServiciuActivity.class);
+                startActivity(intentVizualizare);
+            }
+        });
     }
 
     private void initComponents(){
@@ -111,7 +119,6 @@ public class ServiciiActivity extends AppCompatActivity {
         }
 
         final String finalNumeCategorieFirebase = numeCategorieFirebase;
-        Toast.makeText(this, finalNumeCategorieFirebase, Toast.LENGTH_SHORT).show();
         FirebaseDatabase.getInstance().getReference().child("Servicii").child(finalNumeCategorieFirebase).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

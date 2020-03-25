@@ -32,7 +32,7 @@
     <string name="serviciile_mele">Serviciile mele</string>
     <string name="stergere">Stergere</string>
     <string name="denumire">Denumire</string>
-    <string name="denumire_furnizor">Furnizor:</string>
+    <string name="denumire_furnizor">Furnizor</string>
     <string name="nu_exista_date">Nu exista date.</string>
     <string name="adauga_produsul_sau_serviciul_tau">Adauga produsul sau serviciul tau!</string>
     <string name="denumire_produs_serviciu">Denumire produs/serviciu</string>
@@ -41,6 +41,10 @@
     <string name="introduceti_pretul">Introduceti pretul</string>
     <string name="introduceti_numele_furnizorului">Introduceti numele furnizorului</string>
     <string name="eroare_denumire_pred_serv">Introduceti denumirea produsului sau serviciului!</string>
+    <string name="produsul_serviciul_tau_aici">Produsul/serviciul tau aici.</string>
+    <string name="fa_o_rezervare">Fa o rezervare</string>
+    <string name="data_evenimentului_tau">Data evenimentului tau:</string>
+    <string name="rezerva">+ Rezerva acum!</string>
 
     <string-array name="categorii">
         <item>Locatie</item>
