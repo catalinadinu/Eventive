@@ -42,6 +42,7 @@ public class ServiciiActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intentVizualizare = new Intent(ServiciiActivity.this, VizualizareServiciuActivity.class);
+                intentVizualizare.putExtra(Const.CHEIE_TRIMITERE_SERVICIU_VIZUALIZARE, listaServicii.get(position));
                 startActivity(intentVizualizare);
             }
         });
