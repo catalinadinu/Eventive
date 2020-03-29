@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VizualizareServiciuActivity"></activity>
+        <activity android:name=".DetaliiFurnizorActivity"></activity>
+        <activity android:name=".VizualizareServiciuActivity" />
         <activity android:name=".AdaugareServiciuActivity" />
         <activity android:name=".ServiciiActivity" />
         <activity android:name=".ContFurnizorActivity" />

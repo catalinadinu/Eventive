@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,21 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vizualizare_serviciu);
 
         initComponents();
+
+        denumireFurnizor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VizualizareServiciuActivity.this, DetaliiFurnizorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        butonRezervare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(VizualizareServiciuActivity.this, "Serviciu rezervat.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initComponents(){

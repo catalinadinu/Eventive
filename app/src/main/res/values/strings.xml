@@ -45,6 +45,9 @@
     <string name="fa_o_rezervare">Fa o rezervare</string>
     <string name="data_evenimentului_tau">Data evenimentului tau:</string>
     <string name="rezerva">+ Rezerva acum!</string>
+    <string name="adresa">Adresa</string>
+    <string name="telefon">Telefon</string>
+    <string name="alte_produse_servicii">Alte produse/servicii</string>
 
     <string-array name="categorii">
         <item>Locatie</item>
