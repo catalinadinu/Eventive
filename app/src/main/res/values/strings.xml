@@ -48,6 +48,10 @@
     <string name="adresa">Adresa</string>
     <string name="telefon">Telefon</string>
     <string name="alte_produse_servicii">Alte produse/servicii</string>
+    <string name="detalii_cont">Detalii cont</string>
+    <string name="introduceti_emailul">Introduceti emailul</string>
+    <string name="introduceti_numarul_de_telefon">Introduceti numarul de telefon</string>
+    <string name="salveaza_detaliile">Salveaza detaliile</string>
 
     <string-array name="categorii">
         <item>Locatie</item>

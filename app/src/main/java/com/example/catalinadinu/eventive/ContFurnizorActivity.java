@@ -32,6 +32,14 @@ public class ContFurnizorActivity extends AppCompatActivity {
         String stringWelcome = "Bun venit in cont, " + FirebaseAuth.getInstance().getCurrentUser().getEmail() + "! :)";
         textWelcome.setText(stringWelcome);
 
+        setari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContFurnizorActivity.this, SetariContFurnizorActivity.class);
+                startActivity(intent);
+            }
+        });
+
         deconectare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
