@@ -55,6 +55,37 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:fontFamily="casual"
+                android:text="@string/denumire_furnizor"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <EditText
+                android:id="@+id/setari_furnizor_denumire"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/introduceti_numele_furnizorului"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:textColorLink="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:fontFamily="casual"
                 android:text="@string/adresa"
                 android:layout_marginTop="24dp"
                 android:textColor="@color/colorPrimaryDark"
@@ -97,18 +128,19 @@
 
             <EditText
                 android:id="@+id/setari_furnizor_email"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
-                android:hint="@string/introduceti_emailul"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:ems="10"
                 android:fontFamily="casual"
-                android:textColorLink="@color/colorPrimary"
-                android:backgroundTint="@color/colorPrimaryDark"/>
+                android:hint="@string/introduceti_emailul"
+                android:inputType="textEmailAddress"
+                android:textColorLink="@color/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -128,21 +160,22 @@
 
             <EditText
                 android:id="@+id/setari_furnizor_telefon"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
-                android:hint="@string/introduceti_numarul_de_telefon"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:ems="10"
                 android:fontFamily="casual"
-                android:textColorLink="@color/colorPrimary"
-                android:backgroundTint="@color/colorPrimaryDark"/>
+                android:hint="@string/introduceti_numarul_de_telefon"
+                android:inputType="number"
+                android:textColorLink="@color/colorPrimary" />
 
             <android.support.v7.widget.CardView
-                android:id="@+id/adaugare_serviciu_buton_salvare"
+                android:id="@+id/setari_furnizor_buton_salvare"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"

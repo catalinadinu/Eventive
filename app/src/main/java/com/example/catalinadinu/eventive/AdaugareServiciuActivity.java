@@ -85,20 +85,20 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
         }
 
         if(descriere.getText() == null || descriere.getText().toString().trim().isEmpty()){
-            descriere.setError("Introduceti o descriere!");
+            descriere.setError(getString(R.string.introduceti_o_descriere));
             descriere.requestFocus();
             return false;
         }
 
         if(pret.getText() == null || pret.getText().toString().trim().isEmpty() ||
                 Integer.parseInt(String.valueOf(pret.getText())) < 1){
-            pret.setError("Introduceti pretul!");
+            pret.setError(getString(R.string.introduceti_pretul_));
             pret.requestFocus();
             return false;
         }
 
         if(denumireFurnizor.getText() == null || denumireFurnizor.getText().toString().trim().isEmpty()){
-            denumireFurnizor.setError("Introduceti denumirea furnizorului!");
+            denumireFurnizor.setError(getString(R.string.introduceti_denumirea_furnizorului));
             denumireFurnizor.requestFocus();
             return false;
         }

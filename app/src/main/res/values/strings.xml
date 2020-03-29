@@ -52,6 +52,12 @@
     <string name="introduceti_emailul">Introduceti emailul</string>
     <string name="introduceti_numarul_de_telefon">Introduceti numarul de telefon</string>
     <string name="salveaza_detaliile">Salveaza detaliile</string>
+    <string name="introduceti_o_descriere">Introduceti o descriere!</string>
+    <string name="introduceti_pretul_">Introduceti pretul!</string>
+    <string name="introduceti_denumirea_furnizorului">Introduceti denumirea furnizorului!</string>
+    <string name="introduceti_adresa">Introduceti adresa!</string>
+    <string name="introduceti_nr_telefon">Introduceti numarul de telefon!</string>
+    <string name="introduceti_email">Introduceti emailul!</string>
 
     <string-array name="categorii">
         <item>Locatie</item>
