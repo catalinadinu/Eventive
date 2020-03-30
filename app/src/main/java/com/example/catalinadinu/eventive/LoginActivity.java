@@ -57,14 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseAuth.getInstance().signOut();
 
-        skipConectare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-                startActivity(dashboardIntent);
-            }
-        });
-
         inregistrare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
