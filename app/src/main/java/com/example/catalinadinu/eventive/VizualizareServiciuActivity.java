@@ -36,6 +36,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(VizualizareServiciuActivity.this, DetaliiFurnizorActivity.class);
+                intent.putExtra(Const.CHEIE_TRIMITERE_DENUMIRE_FURNIZOR_DETALII, denumireFurnizor.getText().toString().trim());
                 startActivity(intent);
             }
         });

@@ -9,6 +9,9 @@ public class Furnizor implements Parcelable {
     private String telefon;
     private String email;
 
+    public Furnizor() {
+    }
+
     public Furnizor(String deumire, String adresa, String telefon, String email) {
         this.deumire = deumire;
         this.adresa = adresa;

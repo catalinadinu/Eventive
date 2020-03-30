@@ -58,6 +58,7 @@
     <string name="introduceti_adresa">Introduceti adresa!</string>
     <string name="introduceti_nr_telefon">Introduceti numarul de telefon!</string>
     <string name="introduceti_email">Introduceti emailul!</string>
+    <string name="nu_exista_date_despre_acest_furnizor">Nu exista date despre acest furnizor.</string>
 
     <string-array name="categorii">
         <item>Locatie</item>
