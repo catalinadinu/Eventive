@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Furnizor;
@@ -45,19 +46,32 @@ public class DetaliiFurnizorActivity extends AppCompatActivity {
     }
 
     private void citireDetaliiDinFirebase(){
-        FirebaseDatabase.getInstance().getReference().child("Furnizori")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Furnizori").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String den = dataSnapshot.getValue(Furnizor.class).getDeumire();
-                String mail = dataSnapshot.getValue(Furnizor.class).getEmail();
-                String adr = dataSnapshot.getValue(Furnizor.class).getAdresa();
-                String tel = dataSnapshot.getValue(Furnizor.class).getTelefon();
+                String den = null;
+                String mail = null;
+                String adr = null;
+                String tel = null;
+                for(DataSnapshot child: dataSnapshot.getChildren()){
+                    if(child.getValue(Furnizor.class).getDeumire().toLowerCase()
+                            .equals(denumireFurnizorDinIntent.toLowerCase())){
+                        den = child.getValue(Furnizor.class).getDeumire();
+                        mail = child.getValue(Furnizor.class).getEmail();
+                        adr = child.getValue(Furnizor.class).getAdresa();
+                        tel = child.getValue(Furnizor.class).getTelefon();
+                        Toast.makeText(DetaliiFurnizorActivity.this, child.getValue(Furnizor.class).getDeumire(), Toast.LENGTH_LONG).show();
+                    }
+                }
 
-                denumire.setText(den);
-                email.setText(mail);
-                adresa.setText(adr);
-                telefon.setText(tel);
+
+                if(den != null && mail != null && adr != null && tel != null){
+                    denumire.setText(den);
+                    email.setText(mail);
+                    adresa.setText(adr);
+                    telefon.setText(tel);
+                }
+
             }
 
             @Override

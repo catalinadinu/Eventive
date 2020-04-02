@@ -32,7 +32,7 @@ public class SetariContFurnizorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(valid()){
                     Furnizor furnizor = createFurnizorFromView();
-                    root.child("Furnizori").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(furnizor);
+                    root.child("Furnizori").push().setValue(furnizor);
                     Toast.makeText(SetariContFurnizorActivity.this, "Date actualizate cu succes.", Toast.LENGTH_SHORT).show();
                 }
             }
