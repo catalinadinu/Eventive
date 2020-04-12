@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/contact_app_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/contact_app_phone" />
 
     <TextView
         android:id="@+id/contact_site"
@@ -95,10 +95,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/contact_app_mail" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/contact_app_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -124,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/contact_site" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/contact_app_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
