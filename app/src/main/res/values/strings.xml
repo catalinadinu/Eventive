@@ -59,6 +59,13 @@
     <string name="introduceti_nr_telefon">Introduceti numarul de telefon!</string>
     <string name="introduceti_email">Introduceti emailul!</string>
     <string name="nu_exista_date_despre_acest_furnizor">Nu exista date despre acest furnizor.</string>
+    <string name="versiunea_1_0">versiunea 1.0</string>
+    <string name="contactati_ne_pe_adresa_de_email">Contactati-ne pe adresa de email</string>
+    <string name="help_eventive_gmail_com">help.eventive@gmail.com</string>
+    <string name="aplicatie_dezvoltata_sub_indrumarea">Aplicatie dezvoltata sub indrumarea catedrei de Dispozitive si Aplicatii Mobile</string>
+    <string name="pdm_ase_ro">pdm.ase.ro</string>
+    <string name="sau_la_numarul_de_telefon">sau la numarul de telefon</string>
+    <string name="acorda_o_nota_aplicatiei">Acorda o nota aplicatiei</string>
 
     <string-array name="categorii">
         <item>Locatie</item>

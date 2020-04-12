@@ -3,7 +3,7 @@ package com.example.catalinadinu.eventive;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ContactAppActivity extends AppCompatActivity {
+public class ContactAppActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
