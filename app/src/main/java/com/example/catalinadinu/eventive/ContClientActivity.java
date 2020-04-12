@@ -45,6 +45,14 @@ public class ContClientActivity extends AppCompatActivity {
             }
         });
 
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContClientActivity.this, ContactAppActivity.class);
+                startActivity(intent);
+            }
+        });
+
         setupFirebaseListener();
 
     }
