@@ -36,6 +36,15 @@ public class ContactAppActivity extends AppCompatActivity{
                 startActivity(Intent.createChooser(sendEmail, "Choose an email client from..."));
             }
         });
+
+        apelTelefon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String number = "tel:0732973274" ;
+                Intent dial = new Intent (Intent.ACTION_DIAL, Uri.parse(number));
+                startActivity(dial);
+            }
+        });
     }
 
     private void initComponents(){
