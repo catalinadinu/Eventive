@@ -155,6 +155,8 @@ public class SignupActivity extends AppCompatActivity {
                                     progressBar.setVisibility(View.GONE);
                                     if(task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Inregistrarea s-a efectuat cu succes!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                                        startActivity(intent);
                                     }
                                     else {
                                         if(task.getException() instanceof FirebaseAuthUserCollisionException){
