@@ -73,11 +73,12 @@ public class ContactAppActivity extends AppCompatActivity{
 //        ratingBar.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Toast.makeText(ContactAppActivity.this, "Rating: " + ratingBar.getRating(), Toast.LENGTH_SHORT).show();
+//                float rating = ratingBar.getRating();
 //                AppRating appRating = new AppRating();
-//                appRating.setRating(ratingBar.getRating());
+//                appRating.setRating(rating);
 //                appRating.setUser(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 //                root.child("Rating").push().setValue(appRating);
+//                ratingBar.setRating(rating);
 //            }
 //        });
     }
@@ -89,6 +90,7 @@ public class ContactAppActivity extends AppCompatActivity{
         apelTelefon = findViewById(R.id.contact_app_phone);
         ratingBar = findViewById(R.id.contact_app_rating_bar);
 
+        ratingBar.setRating(0);
         getRatingFromFirebase();
     }
 
