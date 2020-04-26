@@ -95,7 +95,7 @@ public class ServiciiActivity extends AppCompatActivity {
             numeCategorieFirebase = "Muzica";
         }
         if(categorieAleasa.equals(Categorii.FOTO_VIDEO.toString())){
-            numeCategorieFirebase = "Foto - Video";
+            numeCategorieFirebase = "Foto-Video";
         }
         if(categorieAleasa.equals(Categorii.PERSONAL.toString())){
             numeCategorieFirebase = "Personal";

@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.catalinadinu.eventive.Clase.Serviciu;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -111,7 +112,15 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
         String desc = descriere.getText().toString();
         Integer pr = Integer.valueOf(pret.getText().toString());
         String numeFurnizor = denumireFurnizor.getText().toString();
+        String mail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        return new Serviciu(numeServiciu, desc, pr, numeFurnizor, categorieAleasaString);
+        Serviciu s = new Serviciu();
+        s.setCategorie(categorieAleasaString);
+        s.setDenumire(numeServiciu);
+        s.setDescriere(desc);
+        s.setPret(pr);
+        s.setNumeFurnizor(numeFurnizor);
+        s.setMailUtilizator(mail);
+        return s;
     }
 }

@@ -12,7 +12,17 @@ public class Serviciu implements Parcelable {
     private Integer pret;
     private String numeFurnizor;
     private String categorie;
+    private String mailUtilizator;
     private String[] dateOcupate;
+
+    public Serviciu(String denumire, String descriere, Integer pret, String numeFurnizor, String categorie, String mailUtilizator) {
+        this.denumire = denumire;
+        this.descriere = descriere;
+        this.pret = pret;
+        this.numeFurnizor = numeFurnizor;
+        this.categorie = categorie;
+        this.mailUtilizator = mailUtilizator;
+    }
 
     public Serviciu(String denumire, String descriere, Integer pret, String numeFurnizor, String categorie) {
         this.denumire = denumire;
@@ -44,6 +54,7 @@ public class Serviciu implements Parcelable {
         }
         numeFurnizor = in.readString();
         categorie = in.readString();
+        mailUtilizator = in.readString();
         dateOcupate = in.createStringArray();
     }
 
@@ -99,6 +110,14 @@ public class Serviciu implements Parcelable {
         this.categorie = categorie;
     }
 
+    public String getMailUtilizator() {
+        return mailUtilizator;
+    }
+
+    public void setMailUtilizator(String mailUtilizator) {
+        this.mailUtilizator = mailUtilizator;
+    }
+
     public String[] getDateOcupate() {
         return dateOcupate;
     }
@@ -115,10 +134,10 @@ public class Serviciu implements Parcelable {
                 ", pret=" + pret +
                 ", numeFurnizor='" + numeFurnizor + '\'' +
                 ", categorie='" + categorie + '\'' +
+                ", mailUtilizator='" + mailUtilizator + '\'' +
                 ", dateOcupate=" + Arrays.toString(dateOcupate) +
                 '}';
     }
-
 
     @Override
     public int describeContents() {
@@ -137,6 +156,7 @@ public class Serviciu implements Parcelable {
         }
         dest.writeString(numeFurnizor);
         dest.writeString(categorie);
+        dest.writeString(mailUtilizator);
         dest.writeStringArray(dateOcupate);
     }
 }
