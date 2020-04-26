@@ -21,9 +21,12 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
     private TextView descriere;
     private TextView pret;
     private TextView denumireFurnizor;
+    private TextView textView_rezerva;
+    private TextView textView_data;
     private DatePicker calendar;
     private CardView butonRezervare;
     private Serviciu serviciuDeAfisat;
+    private boolean vizualizareServiciuPropriu = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +58,23 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
         descriere = findViewById(R.id.vizualizare_serviciu_descriere_serviciu);
         pret = findViewById(R.id.vizualizare_serviciu_pret_serviciu);
         denumireFurnizor = findViewById(R.id.vizualizare_serviciu_nume_furnizor);
+        textView_rezerva = findViewById(R.id.vizualizare_serviciu_textview1);
+        textView_data = findViewById(R.id.vizualizare_serviciu_textview2);
         calendar = findViewById(R.id.vizualizare_serviciu_calendar);
         butonRezervare = findViewById(R.id.vizualizare_serviciu_buton_rezervare);
 
         Intent intentPreluareServiciu = getIntent();
         serviciuDeAfisat = intentPreluareServiciu.getParcelableExtra(Const.CHEIE_TRIMITERE_SERVICIU_VIZUALIZARE);
+        if(intentPreluareServiciu.hasExtra(Const.CHEIE_TRMIITERE_FLAG_SERVICII_FILTRATE)){
+            vizualizareServiciuPropriu = intentPreluareServiciu.getBooleanExtra(Const.CHEIE_TRMIITERE_FLAG_SERVICII_FILTRATE, true);
+        }
+
+        if(vizualizareServiciuPropriu){
+            textView_rezerva.setVisibility(View.GONE);
+            textView_data.setVisibility(View.GONE);
+            calendar.setVisibility(View.GONE);
+            butonRezervare.setVisibility(View.GONE);
+        }
 
         denumireServiciu.setText(serviciuDeAfisat.getDenumire());
         descriere.setText(serviciuDeAfisat.getDescriere());

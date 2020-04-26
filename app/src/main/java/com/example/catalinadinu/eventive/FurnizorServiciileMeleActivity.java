@@ -1,12 +1,16 @@
 package com.example.catalinadinu.eventive;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.ServiciiAdapter;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +32,16 @@ public class FurnizorServiciileMeleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furnizor_serviciile_mele);
         initComponents();
+
+         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 Intent intent = new Intent(FurnizorServiciileMeleActivity.this, VizualizareServiciuActivity.class);
+                 intent.putExtra(Const.CHEIE_TRIMITERE_SERVICIU_VIZUALIZARE, listaServicii.get(position));
+                 intent.putExtra(Const.CHEIE_TRMIITERE_FLAG_SERVICII_FILTRATE, true);
+                 startActivity(intent);
+             }
+         });
 
     }
 
@@ -64,7 +78,7 @@ public class FurnizorServiciileMeleActivity extends AppCompatActivity {
                         }
                     }
                 }
-                
+
                 if(listaServicii != null && !listaServicii.isEmpty()){
                     ArrayAdapter adapter = (ArrayAdapter) listView.getAdapter();
                     adapter.notifyDataSetChanged();
