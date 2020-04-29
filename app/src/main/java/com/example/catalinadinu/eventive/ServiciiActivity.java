@@ -56,6 +56,10 @@ public class ServiciiActivity extends AppCompatActivity {
         listViewServicii = findViewById(R.id.listview_lista_servicii_pe_categorii);
         butonAdaugare = findViewById(R.id.lista_servicii_adaugare);
 
+        ServiciiAdapter adapter = new ServiciiAdapter(getApplicationContext(), R.layout.card_servicii, listaServicii,getLayoutInflater());
+        listViewServicii.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
         if(tipUtilizator.equals("client")){
             butonAdaugare.setVisibility(View.GONE);
         }
@@ -75,9 +79,8 @@ public class ServiciiActivity extends AppCompatActivity {
 
         citireServiciiPeCategorii();
 
-        ServiciiAdapter adapter = new ServiciiAdapter(getApplicationContext(), R.layout.card_servicii, listaServicii,getLayoutInflater());
-        listViewServicii.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        ArrayAdapter adaptor = (ArrayAdapter) listViewServicii.getAdapter();
+        adaptor.notifyDataSetChanged();
     }
 
     private void citireServiciiPeCategorii(){

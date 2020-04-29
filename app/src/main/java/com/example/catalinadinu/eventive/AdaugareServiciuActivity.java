@@ -1,9 +1,12 @@
 package com.example.catalinadinu.eventive;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -11,10 +14,16 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class AdaugareServiciuActivity extends AppCompatActivity {
     private ImageView imagineServiciu;
@@ -26,6 +35,9 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
     private Spinner categorieAleasa;
     private CardView butonSalvare;
     private String categorieAleasaString;
+    private Intent intent;
+    private Serviciu serviciuPrimit;
+    private Serviciu serviciuEditat;
 
     private DatabaseReference root;
 
@@ -38,6 +50,7 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
+        intent = getIntent();
         root = FirebaseDatabase.getInstance().getReference();
         imagineServiciu = findViewById(R.id.adaugare_serviciu_imagine);
         butonAdaugareImagine = findViewById(R.id.adaugare_serviciu_buton_adaugare_imagine);
@@ -76,6 +89,10 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
 
             }
         });
+
+        if(intent.hasExtra(Const.CHEIE_TRIMITERE_FLAG_MODIFICARE_SERVICIU)){
+            editareServiciu();
+        }
     }
 
     private boolean valid(){
@@ -105,6 +122,64 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private void editareServiciu(){
+        if(intent.hasExtra(Const.CHEIE_TRIMITERE_FLAG_MODIFICARE_SERVICIU) &&
+                intent.hasExtra(Const.CHEIE_TRIMITERE_SERVICIU_DE_MODIFICAT)){
+            serviciuPrimit = intent.getParcelableExtra(Const.CHEIE_TRIMITERE_SERVICIU_DE_MODIFICAT);
+            denumireServiciu.setText(serviciuPrimit.getDenumire());
+            descriere.setText(serviciuPrimit.getDescriere());
+            pret.setText(String.valueOf(serviciuPrimit.getPret()));
+            denumireFurnizor.setText(serviciuPrimit.getNumeFurnizor());
+            ArrayAdapter adapter = (ArrayAdapter) categorieAleasa.getAdapter();
+            int pozitie = adapter.getPosition(serviciuPrimit.getCategorie());
+            categorieAleasa.setSelection(pozitie);
+
+        }
+
+        butonSalvare.setClickable(true);
+
+        butonSalvare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(valid()){
+                    serviciuEditat = createServiciuFromView();
+                    root.child("Servicii").child(serviciuPrimit.getCategorie()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for(DataSnapshot child:dataSnapshot.getChildren()){
+                                if(serviciuEditat.getDenumire().equals(serviciuPrimit.getDenumire()) && serviciuEditat.getNumeFurnizor().equals(serviciuPrimit.getNumeFurnizor())) {
+                                    String cheie = child.getKey();
+                                    if(serviciuEditat.getCategorie().equals(serviciuPrimit.getCategorie())){
+                                        root.child("Servicii").child(serviciuPrimit.getCategorie()).child(cheie).child("denumire").setValue(serviciuEditat.getDenumire());
+                                        root.child("Servicii").child(serviciuPrimit.getCategorie()).child(cheie).child("descriere").setValue(serviciuEditat.getDescriere());
+                                        root.child("Servicii").child(serviciuPrimit.getCategorie()).child(cheie).child("numeFurnizor").setValue(serviciuEditat.getNumeFurnizor());
+                                        root.child("Servicii").child(serviciuPrimit.getCategorie()).child(cheie).child("pret").setValue(serviciuEditat.getPret());
+                                        root.child("Servicii").child(serviciuPrimit.getCategorie()).child(cheie).child("categorie").setValue(serviciuEditat.getCategorie());
+                                        root.child("Servicii").child(serviciuPrimit.getCategorie()).child(cheie).child("mailUtilizator").setValue(serviciuEditat.getMailUtilizator());
+                                        finish();
+                                    }
+                                    else{
+                                        root.child("Servicii").child(serviciuPrimit.getCategorie()).child(cheie).removeValue();
+                                        root.child("Servicii").child(serviciuEditat.getCategorie()).push().setValue(serviciuEditat);
+                                        finish();
+                                    }
+                                    Toast.makeText(AdaugareServiciuActivity.this, "Serviciu editat", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+            }
+        });
     }
 
     private Serviciu createServiciuFromView(){

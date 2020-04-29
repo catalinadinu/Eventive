@@ -28,7 +28,7 @@ public class FurnizorServiciileMeleActivity extends AppCompatActivity {
     private ArrayList<Serviciu> listaServicii = new ArrayList<>();
     private ListView listView;
     private DatabaseReference root;
-    private Serviciu serviciuSters;
+    private Serviciu serviciuModificat;
     private String cheie;
 
     @Override
@@ -50,6 +50,7 @@ public class FurnizorServiciileMeleActivity extends AppCompatActivity {
          listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
              @Override
              public boolean onItemLongClick(AdapterView<?> parent, View view, final int pozitie, long id) {
+                 serviciuModificat = listaServicii.get(pozitie);
                  AlertDialog.Builder builder = new AlertDialog.Builder(FurnizorServiciileMeleActivity.this);
                  builder.setTitle("Selectati actiunea");
                  builder.setMessage("Serviciul selectat poate fi editat sau sters");
@@ -57,7 +58,10 @@ public class FurnizorServiciileMeleActivity extends AppCompatActivity {
                  builder.setPositiveButton("EDITARE", new DialogInterface.OnClickListener() {
                      @Override
                      public void onClick(DialogInterface dialog, int which) {
+
                          Intent intent = new Intent(FurnizorServiciileMeleActivity.this, AdaugareServiciuActivity.class);
+                         intent.putExtra(Const.CHEIE_TRIMITERE_FLAG_MODIFICARE_SERVICIU, Const.EDITARE);
+                         intent.putExtra(Const.CHEIE_TRIMITERE_SERVICIU_DE_MODIFICAT, serviciuModificat);
                          startActivity(intent);
                      }
                  });
@@ -65,9 +69,7 @@ public class FurnizorServiciileMeleActivity extends AppCompatActivity {
                  builder.setNegativeButton("STERGERE", new DialogInterface.OnClickListener() {
                      @Override
                      public void onClick(DialogInterface dialog, int which) {
-                         serviciuSters = listaServicii.get(pozitie);
-
-                         root.child("Servicii").child(serviciuSters.getCategorie()).addListenerForSingleValueEvent(new ValueEventListener() {
+                         root.child("Servicii").child(serviciuModificat.getCategorie()).addListenerForSingleValueEvent(new ValueEventListener() {
                              @Override
                              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                  for(DataSnapshot child:dataSnapshot.getChildren()){
@@ -80,9 +82,9 @@ public class FurnizorServiciileMeleActivity extends AppCompatActivity {
 
                                      Serviciu serv = new Serviciu(denumire,descriere,pret,numeFurnizor,categ,mailUtiliz);
 
-                                     if(serv.getDenumire().equals(serviciuSters.getDenumire()) && serv.getNumeFurnizor().equals(serviciuSters.getNumeFurnizor())) {
+                                     if(serv.getDenumire().equals(serviciuModificat.getDenumire()) && serv.getNumeFurnizor().equals(serviciuModificat.getNumeFurnizor())) {
                                          String cheie = child.getKey();
-                                         root.child("Servicii").child(serviciuSters.getCategorie()).child(cheie).removeValue();
+                                         root.child("Servicii").child(serviciuModificat.getCategorie()).child(cheie).removeValue();
                                          Toast.makeText(FurnizorServiciileMeleActivity.this, "Serviciu sters", Toast.LENGTH_SHORT).show();
                                      }
                                  }
