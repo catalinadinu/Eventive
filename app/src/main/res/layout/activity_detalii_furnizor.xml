@@ -7,14 +7,6 @@
     tools:context=".DetaliiFurnizorActivity"
     android:background="@color/white">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,7 +17,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/eventive_cube"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +30,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="casual"
                 android:text="Nume furnizor"
                 android:textColor="@color/colorPrimaryDark"
@@ -53,8 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="12dp"
                 android:fontFamily="casual"
                 android:text="@string/adresa"
                 android:textColor="@color/colorPrimaryDark"
@@ -85,8 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="12dp"
                 android:fontFamily="casual"
                 android:text="@string/email"
                 android:textColor="@color/colorPrimaryDark"
@@ -117,8 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="12dp"
                 android:fontFamily="casual"
                 android:text="@string/telefon"
                 android:textColor="@color/colorPrimaryDark"
@@ -149,8 +141,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="12dp"
                 android:fontFamily="casual"
                 android:text="@string/alte_produse_servicii"
                 android:textColor="@color/colorPrimaryDark"
@@ -162,14 +154,12 @@
 
             <ListView
                 android:id="@+id/detalii_furnizor_alte_servicii"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
             </ListView>
 
         </LinearLayout>
-
-    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

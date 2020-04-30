@@ -4,17 +4,22 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Furnizor;
+import com.example.catalinadinu.eventive.Clase.ServiciiAdapter;
+import com.example.catalinadinu.eventive.Clase.Serviciu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class DetaliiFurnizorActivity extends AppCompatActivity {
     private TextView denumire;
@@ -23,6 +28,8 @@ public class DetaliiFurnizorActivity extends AppCompatActivity {
     private TextView telefon;
     private ListView alteServicii;
     private String denumireFurnizorDinIntent;
+    private ArrayList<Furnizor> listaDateFurnizori = new ArrayList<>();
+    private ArrayList<Serviciu> listaServicii = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,35 +50,45 @@ public class DetaliiFurnizorActivity extends AppCompatActivity {
         denumire.setText(denumireFurnizorDinIntent);
 
         citireDetaliiDinFirebase();
+
+        citireListaServiciiDinFirebase();
+
+        ServiciiAdapter adapter = new ServiciiAdapter(getApplicationContext(), R.layout.card_servicii, listaServicii,getLayoutInflater());
+        alteServicii.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     private void citireDetaliiDinFirebase(){
         FirebaseDatabase.getInstance().getReference().child("Furnizori").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String den = null;
-                String mail = null;
-                String adr = null;
-                String tel = null;
+
                 for(DataSnapshot child: dataSnapshot.getChildren()){
-                    if(child.getValue(Furnizor.class).getDeumire().toLowerCase()
-                            .equals(denumireFurnizorDinIntent.toLowerCase())){
-                        den = child.getValue(Furnizor.class).getDeumire();
-                        mail = child.getValue(Furnizor.class).getEmail();
-                        adr = child.getValue(Furnizor.class).getAdresa();
-                        tel = child.getValue(Furnizor.class).getTelefon();
-                        Toast.makeText(DetaliiFurnizorActivity.this, child.getValue(Furnizor.class).getDeumire(), Toast.LENGTH_LONG).show();
+                    String den = child.getValue(Furnizor.class).getDeumire();
+                    String adr = child.getValue(Furnizor.class).getAdresa();
+                    String tel = child.getValue(Furnizor.class).getTelefon();
+                    String mail = child.getValue(Furnizor.class).getEmail();
+                    String mailConectat = child.getValue(Furnizor.class).getMailContConectat();
+                    Furnizor f = new Furnizor(den,adr,tel,mail,mailConectat);
+
+                    if(f.getDeumire().trim().equalsIgnoreCase(denumireFurnizorDinIntent.trim())){
+                        listaDateFurnizori.add(f);
+                    }
+
+                    if(listaDateFurnizori != null && !listaDateFurnizori.isEmpty()) {
+                        int pozitie = listaDateFurnizori.size() - 1;
+                        Furnizor furnizor = listaDateFurnizori.get(pozitie);
+                        String den2 = furnizor.getDeumire();
+                        String adr2 = furnizor.getAdresa();
+                        String tel2 = furnizor.getTelefon();
+                        String m = furnizor.getEmail();
+
+                        denumire.setText(den2);
+                        email.setText(m);
+                        adresa.setText(adr2);
+                        telefon.setText(tel2);
                     }
                 }
-
-
-                if(den != null && mail != null && adr != null && tel != null){
-                    denumire.setText(den);
-                    email.setText(mail);
-                    adresa.setText(adr);
-                    telefon.setText(tel);
-                }
-
             }
 
             @Override
@@ -79,5 +96,43 @@ public class DetaliiFurnizorActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void citireListaServiciiDinFirebase(){
+        FirebaseDatabase.getInstance().getReference().child("Servicii").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot categorie : dataSnapshot.getChildren()){
+                    for(DataSnapshot serviciu : categorie.getChildren()){
+                        String denumire = serviciu.getValue(Serviciu.class).getDenumire();
+                        String descriere = serviciu.getValue(Serviciu.class).getDescriere();
+                        Integer pret = serviciu.getValue(Serviciu.class).getPret();
+                        String numeFurnizor = serviciu.getValue(Serviciu.class).getNumeFurnizor();
+                        String categ = serviciu.getValue(Serviciu.class).getCategorie();
+                        String mailUtiliz = serviciu.getValue(Serviciu.class).getMailUtilizator();
+                        String[] dateOcupate = serviciu.getValue(Serviciu.class).getDateOcupate();
+
+                        Serviciu serv = new Serviciu(denumire,descriere,pret,numeFurnizor,categ,mailUtiliz);
+                        serv.setDateOcupate(dateOcupate);
+
+                        if(serv.getNumeFurnizor().trim().equalsIgnoreCase(denumireFurnizorDinIntent.trim())){
+                            listaServicii.add(serv);
+                        }
+                        Toast.makeText(DetaliiFurnizorActivity.this, "Lista servicii: " + listaServicii.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                if(listaServicii != null && !listaServicii.isEmpty()){
+                    ArrayAdapter adapter = (ArrayAdapter) alteServicii.getAdapter();
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
