@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,6 +39,15 @@ public class DetaliiFurnizorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalii_furnizor);
 
         initComponents();
+
+        alteServicii.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentVizualizare = new Intent(DetaliiFurnizorActivity.this, VizualizareServiciuActivity.class);
+                intentVizualizare.putExtra(Const.CHEIE_TRIMITERE_SERVICIU_VIZUALIZARE, listaServicii.get(position));
+                startActivity(intentVizualizare);
+            }
+        });
     }
 
     private void initComponents(){
@@ -118,7 +129,7 @@ public class DetaliiFurnizorActivity extends AppCompatActivity {
                         if(serv.getNumeFurnizor().trim().equalsIgnoreCase(denumireFurnizorDinIntent.trim())){
                             listaServicii.add(serv);
                         }
-                        Toast.makeText(DetaliiFurnizorActivity.this, "Lista servicii: " + listaServicii.toString(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(DetaliiFurnizorActivity.this, "Lista servicii: " + listaServicii.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
 
