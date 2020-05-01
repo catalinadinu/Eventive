@@ -129,7 +129,6 @@ public class DetaliiFurnizorActivity extends AppCompatActivity {
                         if(serv.getNumeFurnizor().trim().equalsIgnoreCase(denumireFurnizorDinIntent.trim())){
                             listaServicii.add(serv);
                         }
-//                        Toast.makeText(DetaliiFurnizorActivity.this, "Lista servicii: " + listaServicii.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
 

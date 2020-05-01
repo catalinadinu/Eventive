@@ -15,6 +15,8 @@ import com.example.catalinadinu.eventive.Clase.Serviciu;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 public class VizualizareServiciuActivity extends AppCompatActivity {
     private ImageView imagine;
     private TextView denumireServiciu;
@@ -26,6 +28,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
     private DatePicker calendar;
     private CardView butonRezervare;
     private Serviciu serviciuDeAfisat;
+    private String tipUtilizator;
     private boolean vizualizareServiciuPropriu = false;
 
     @Override
@@ -63,13 +66,17 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
         calendar = findViewById(R.id.vizualizare_serviciu_calendar);
         butonRezervare = findViewById(R.id.vizualizare_serviciu_buton_rezervare);
 
+        calendar.setMinDate(System.currentTimeMillis() - 1000);
+
         Intent intentPreluareServiciu = getIntent();
+        tipUtilizator = intentPreluareServiciu.getStringExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_VIZ_SERV);
         serviciuDeAfisat = intentPreluareServiciu.getParcelableExtra(Const.CHEIE_TRIMITERE_SERVICIU_VIZUALIZARE);
+
         if(intentPreluareServiciu.hasExtra(Const.CHEIE_TRMIITERE_FLAG_SERVICII_FILTRATE)){
             vizualizareServiciuPropriu = intentPreluareServiciu.getBooleanExtra(Const.CHEIE_TRMIITERE_FLAG_SERVICII_FILTRATE, true);
         }
 
-        if(vizualizareServiciuPropriu){
+        if(vizualizareServiciuPropriu || tipUtilizator.equals("furnizor")){
             textView_rezerva.setVisibility(View.GONE);
             textView_data.setVisibility(View.GONE);
             calendar.setVisibility(View.GONE);
