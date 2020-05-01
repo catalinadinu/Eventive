@@ -11,7 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.catalinadinu.eventive.Clase.Const;
+import com.example.catalinadinu.eventive.Clase.Rezervare;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
@@ -31,6 +35,8 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
     private String tipUtilizator;
     private boolean vizualizareServiciuPropriu = false;
 
+    private DatabaseReference root;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +53,36 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
             }
         });
 
+        final Rezervare r = new Rezervare();
+
+        calendar.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                r.setNumeFurnizor(serviciuDeAfisat.getNumeFurnizor());
+                r.setNumeServiciu(serviciuDeAfisat.getDenumire());
+                r.setCategorie(serviciuDeAfisat.getCategorie());
+                r.setMailClient(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                r.setZi(dayOfMonth);
+                r.setLuna(monthOfYear + 1);
+                r.setAn(year);
+            }
+        });
+
         butonRezervare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(VizualizareServiciuActivity.this, "Serviciu rezervat.", Toast.LENGTH_SHORT).show();
+                root.child("Rezervari").push().setValue(r);
+                Toast.makeText(VizualizareServiciuActivity.this, "Serviciu rezervat cu succes", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
+
+
     }
 
     private void initComponents(){
+        root = FirebaseDatabase.getInstance().getReference();
+
         imagine = findViewById(R.id.vizualizare_serviciu_imagine);
         denumireServiciu = findViewById(R.id.vizualizare_serviciu_denumire_serviciu);
         descriere = findViewById(R.id.vizualizare_serviciu_descriere_serviciu);
