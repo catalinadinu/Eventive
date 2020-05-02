@@ -1,6 +1,7 @@
 package com.example.catalinadinu.eventive;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -14,11 +15,15 @@ import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Rezervare;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class VizualizareServiciuActivity extends AppCompatActivity {
@@ -34,6 +39,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
     private Serviciu serviciuDeAfisat;
     private String tipUtilizator;
     private boolean vizualizareServiciuPropriu = false;
+    private ArrayList<Rezervare> listaRezervari = new ArrayList<>();
 
     private DatabaseReference root;
 
@@ -114,5 +120,38 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
         descriere.setText(serviciuDeAfisat.getDescriere());
         pret.setText(serviciuDeAfisat.getPret().toString() + " lei");
         denumireFurnizor.setText(serviciuDeAfisat.getNumeFurnizor());
+    }
+
+    private void citireRezervariSiBlocareDateRezervate(){
+        root.child("Rezervari").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot child:dataSnapshot.getChildren()){
+                    int zi = child.getValue(Rezervare.class).getZi();
+                    int luna = child.getValue(Rezervare.class).getLuna();
+                    int an = child.getValue(Rezervare.class).getAn();
+                    String categorie = child.getValue(Rezervare.class).getCategorie();
+                    String numeServiciu = child.getValue(Rezervare.class).getNumeServiciu();
+                    String numeFurnizor = child.getValue(Rezervare.class).getNumeFurnizor();
+                    String mailClient = child.getValue(Rezervare.class).getMailClient();
+
+                    Rezervare r = new Rezervare(zi, luna, an, categorie, numeServiciu, numeFurnizor, mailClient);
+                    listaRezervari.add(r);
+                }
+
+                if(!listaRezervari.isEmpty()){
+                    for(Rezervare r : listaRezervari){
+                        if(r.getNumeServiciu().trim().equalsIgnoreCase(serviciuDeAfisat.getDenumire().trim())){
+                            
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
