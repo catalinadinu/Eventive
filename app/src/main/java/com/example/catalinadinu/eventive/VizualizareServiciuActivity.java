@@ -40,6 +40,8 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
     private String tipUtilizator;
     private boolean vizualizareServiciuPropriu = false;
     private ArrayList<Rezervare> listaRezervari = new ArrayList<>();
+    private Rezervare rez = new Rezervare();
+    private boolean ziOcupata = false;
 
     private DatabaseReference root;
 
@@ -58,37 +60,10 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        final Rezervare r = new Rezervare();
-
-        calendar.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                r.setNumeFurnizor(serviciuDeAfisat.getNumeFurnizor());
-                r.setNumeServiciu(serviciuDeAfisat.getDenumire());
-                r.setCategorie(serviciuDeAfisat.getCategorie());
-                r.setMailClient(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                r.setZi(dayOfMonth);
-                r.setLuna(monthOfYear + 1);
-                r.setAn(year);
-            }
-        });
-
-        butonRezervare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                root.child("Rezervari").push().setValue(r);
-                Toast.makeText(VizualizareServiciuActivity.this, "Serviciu rezervat cu succes", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
-
-
     }
 
     private void initComponents(){
         root = FirebaseDatabase.getInstance().getReference();
-
         imagine = findViewById(R.id.vizualizare_serviciu_imagine);
         denumireServiciu = findViewById(R.id.vizualizare_serviciu_denumire_serviciu);
         descriere = findViewById(R.id.vizualizare_serviciu_descriere_serviciu);
@@ -120,9 +95,11 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
         descriere.setText(serviciuDeAfisat.getDescriere());
         pret.setText(serviciuDeAfisat.getPret().toString() + " lei");
         denumireFurnizor.setText(serviciuDeAfisat.getNumeFurnizor());
+
+        citireValidareSiAdaugareRezervare();
     }
 
-    private void citireRezervariSiBlocareDateRezervate(){
+    private void citireValidareSiAdaugareRezervare(){
         root.child("Rezervari").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -135,15 +112,17 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                     String numeFurnizor = child.getValue(Rezervare.class).getNumeFurnizor();
                     String mailClient = child.getValue(Rezervare.class).getMailClient();
 
-                    Rezervare r = new Rezervare(zi, luna, an, categorie, numeServiciu, numeFurnizor, mailClient);
-                    listaRezervari.add(r);
-                }
+                    Rezervare r = new Rezervare();
+                    r.setZi(zi);
+                    r.setLuna(luna);
+                    r.setAn(an);
+                    r.setCategorie(categorie);
+                    r.setNumeServiciu(numeServiciu);
+                    r.setNumeFurnizor(numeFurnizor);
+                    r.setMailClient(mailClient);
 
-                if(!listaRezervari.isEmpty()){
-                    for(Rezervare r : listaRezervari){
-                        if(r.getNumeServiciu().trim().equalsIgnoreCase(serviciuDeAfisat.getDenumire().trim())){
-                            
-                        }
+                    if(r.getNumeServiciu().trim().equalsIgnoreCase(serviciuDeAfisat.getDenumire().trim())){
+                        listaRezervari.add(r);
                     }
                 }
             }
@@ -153,5 +132,45 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
 
             }
         });
+
+        calendar.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                for(Rezervare r:listaRezervari){
+                    if(r.getZi() == dayOfMonth && (r.getLuna() - 1) == monthOfYear && r.getAn() == year){
+                        ziOcupata = true;
+                        Toast.makeText(VizualizareServiciuActivity.this, "Data selectata nu este disponibila. Alegeti alta data.",Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        ziOcupata = false;
+                    }
+                }
+
+                if(!ziOcupata){
+                    rez.setNumeFurnizor(serviciuDeAfisat.getNumeFurnizor());
+                    rez.setNumeServiciu(serviciuDeAfisat.getDenumire());
+                    rez.setCategorie(serviciuDeAfisat.getCategorie());
+                    rez.setMailClient(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    rez.setZi(dayOfMonth);
+                    rez.setLuna(monthOfYear + 1);
+                    rez.setAn(year);
+                }
+
+                if(ziOcupata){
+                    butonRezervare.setClickable(false);
+                }
+                else{
+                    butonRezervare.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            root.child("Rezervari").push().setValue(rez);
+                            Toast.makeText(VizualizareServiciuActivity.this, "Serviciu rezervat cu succes", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
+                }
+            }
+        });
+
     }
 }
