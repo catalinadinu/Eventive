@@ -5,16 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.catalinadinu.eventive.Clase.Categorii;
 import com.example.catalinadinu.eventive.Clase.Const;
 
 public class DashboardActivity extends AppCompatActivity {
-    private CardView contulMeu;
+//    private CardView contulMeu;
     private String tipUtilizator;
     private CardView cardLocatie, cardCatering, cardDecoretiuni, cardMuzica,
             cardFotoVideo, cardPersonal, cardCeremoniiReligioase, cardAranjamenteFlorale,
             cardPapetarie, cardAnimatie, cardMarturii, cardAltele;
+    private TextView afisareTipUtilizator;
+    private LinearLayout contulMeu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,13 @@ public class DashboardActivity extends AppCompatActivity {
 
         Intent intentPreluareTipUtilizator = getIntent();
         tipUtilizator = intentPreluareTipUtilizator.getStringExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH);
+
+        if(tipUtilizator.toLowerCase().equals("client")){
+            afisareTipUtilizator.setText(getString(R.string.client_caps));
+        }
+        else{
+            afisareTipUtilizator.setText(getString(R.string.furnizor_caps));
+        }
 
         contulMeu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +69,7 @@ public class DashboardActivity extends AppCompatActivity {
         cardAnimatie = findViewById(R.id.dash_animatie);
         cardMarturii = findViewById(R.id.dash_marturii);
         cardAltele = findViewById(R.id.dash_altele);
+        afisareTipUtilizator = findViewById(R.id.dashboard_tip_utilizator);
     }
 
     private void deschidereCategoriiServicii(){

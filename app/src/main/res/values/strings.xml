@@ -66,6 +66,8 @@
     <string name="pdm_ase_ro">pdm.ase.ro</string>
     <string name="sau_la_numarul_de_telefon">sau la numarul de telefon</string>
     <string name="acorda_o_nota_aplicatiei">Acorda o nota aplicatiei</string>
+    <string name="client_caps">CLIENT</string>
+    <string name="furnizor_caps">FURNIZOR</string>
 
     <string-array name="categorii">
         <item>Locatie</item>

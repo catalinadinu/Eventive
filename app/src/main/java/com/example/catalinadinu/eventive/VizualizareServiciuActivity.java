@@ -139,6 +139,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                 for(Rezervare r:listaRezervari){
                     if(r.getZi() == dayOfMonth && (r.getLuna() - 1) == monthOfYear && r.getAn() == year){
                         ziOcupata = true;
+                        butonRezervare.setClickable(false);
                         Toast.makeText(VizualizareServiciuActivity.this, "Data selectata nu este disponibila. Alegeti alta data.",Toast.LENGTH_LONG).show();
                     }
                     else{

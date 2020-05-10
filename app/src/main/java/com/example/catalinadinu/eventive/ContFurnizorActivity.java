@@ -76,10 +76,10 @@ public class ContFurnizorActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user!=null){
-                    Log.d("Tag", "onAuthStateChanged: signed_in" + user.getUid());
+                    Log.d("Tag", "onAuthStateChanged: signed_in");
 
                 }else{
-                    Log.d("Tag", "onAuthStateChanged: signed_out" + user.getUid());
+                    Log.d("Tag", "onAuthStateChanged: signed_out");
                 }
             }
         };

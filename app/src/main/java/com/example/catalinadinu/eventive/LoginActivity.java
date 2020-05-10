@@ -26,14 +26,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressBar;
-    private TextView skipConectare;
     private TextView inregistrare;
     private CardView conectare;
     private EditText email;
     private EditText parola;
 
     FirebaseAuth mAuth;
-//    FirebaseAuth user;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -48,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        skipConectare = findViewById(R.id.login_skipConectare);
         inregistrare = findViewById(R.id.login_contNou);
         conectare = findViewById(R.id.login_conectare);
         email = findViewById(R.id.login_username);
