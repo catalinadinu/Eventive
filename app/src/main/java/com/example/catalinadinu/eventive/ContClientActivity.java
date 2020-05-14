@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ContClientActivity extends AppCompatActivity {
 
-    private CardView evenimenteleMele, setari, info, deconectare;
+    private CardView rezervarileMele, setari, info, deconectare;
     private FirebaseAuth.AuthStateListener authStateListener;
 
     private TextView textWelcome;
@@ -24,13 +24,13 @@ public class ContClientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cont_client);
 
-        evenimenteleMele = findViewById(R.id.cont_listaEvenimente);
+        rezervarileMele = findViewById(R.id.cont_listaEvenimente);
         setari = findViewById(R.id.cont_setari);
         info = findViewById(R.id.cont_info);
         deconectare = findViewById(R.id.cont_deconectare);
         textWelcome = findViewById(R.id.cont_textWelcome);
 
-        String stringWelcome = "Bun venit in cont, " + FirebaseAuth.getInstance().getCurrentUser().getEmail() + "! :)";
+        String stringWelcome = "Bun venit in cont, " + FirebaseAuth.getInstance().getCurrentUser().getEmail() + " :)";
         textWelcome.setText(stringWelcome);
 
         deconectare.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +49,14 @@ public class ContClientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContClientActivity.this, ContactAppActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        rezervarileMele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContClientActivity.this, VizualizareListaRezervariActivity.class);
                 startActivity(intent);
             }
         });
