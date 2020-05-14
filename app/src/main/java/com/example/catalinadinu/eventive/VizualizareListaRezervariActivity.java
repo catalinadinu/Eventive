@@ -1,12 +1,16 @@
 package com.example.catalinadinu.eventive;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Rezervare;
 import com.example.catalinadinu.eventive.Clase.ServiciiAdapter;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
@@ -24,6 +28,7 @@ public class VizualizareListaRezervariActivity extends AppCompatActivity {
     private ArrayList<Rezervare> listaRezervari = new ArrayList<>();
     private ArrayList<Serviciu> listaServiciiRezervate = new ArrayList<>();
     private DatabaseReference root;
+    private Intent intentVizualizareServiciuRezervat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,25 @@ public class VizualizareListaRezervariActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vizualizare_lista_rezervari);
 
         initComponents();
+
+        listViewRezervari.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Serviciu serviciu = listaServiciiRezervate.get(position);
+
+                Rezervare rez = null;
+                for(Rezervare r:listaRezervari){
+                    if(r.getNumeServiciu().equals(serviciu.getDenumire()) && r.getNumeFurnizor().equals(serviciu.getNumeFurnizor())){
+                        rez = r;
+                    }
+                }
+
+                intentVizualizareServiciuRezervat = new Intent(VizualizareListaRezervariActivity.this, VizualizareServiciuRezervatActivity.class);
+                intentVizualizareServiciuRezervat.putExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_SERVICIU_REZERVAT, serviciu);
+                intentVizualizareServiciuRezervat.putExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_REZERVARE, rez);
+                startActivity(intentVizualizareServiciuRezervat);
+            }
+        });
     }
 
     private void initComponents(){

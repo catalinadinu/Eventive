@@ -68,6 +68,7 @@
     <string name="acorda_o_nota_aplicatiei">Acorda o nota aplicatiei</string>
     <string name="client_caps">CLIENT</string>
     <string name="furnizor_caps">FURNIZOR</string>
+    <string name="data_rezervarii">Data rezervarii</string>
 
     <string-array name="categorii">
         <item>Locatie</item>
