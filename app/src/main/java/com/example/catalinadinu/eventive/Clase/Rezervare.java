@@ -7,6 +7,9 @@ public class Rezervare implements Parcelable {
     private int zi;
     private int luna;
     private int an;
+    private String denumireProdus;
+    private String descriere;
+    private String pret;
     private String categorie;
     private String numeServiciu;
     private String numeFurnizor;
@@ -15,10 +18,13 @@ public class Rezervare implements Parcelable {
     public Rezervare() {
     }
 
-    public Rezervare(int zi, int luna, int an, String categorie, String numeServiciu, String numeFurnizor, String mailClient) {
+    public Rezervare(int zi, int luna, int an, String denumireProdus, String descriere, String pret, String categorie, String numeServiciu, String numeFurnizor, String mailClient) {
         this.zi = zi;
         this.luna = luna;
         this.an = an;
+        this.denumireProdus = denumireProdus;
+        this.descriere = descriere;
+        this.pret = pret;
         this.categorie = categorie;
         this.numeServiciu = numeServiciu;
         this.numeFurnizor = numeFurnizor;
@@ -29,6 +35,9 @@ public class Rezervare implements Parcelable {
         zi = in.readInt();
         luna = in.readInt();
         an = in.readInt();
+        denumireProdus = in.readString();
+        descriere = in.readString();
+        pret = in.readString();
         categorie = in.readString();
         numeServiciu = in.readString();
         numeFurnizor = in.readString();
@@ -71,6 +80,30 @@ public class Rezervare implements Parcelable {
         this.an = an;
     }
 
+    public String getDenumireProdus() {
+        return denumireProdus;
+    }
+
+    public void setDenumireProdus(String denumireProdus) {
+        this.denumireProdus = denumireProdus;
+    }
+
+    public String getDescriere() {
+        return descriere;
+    }
+
+    public void setDescriere(String descriere) {
+        this.descriere = descriere;
+    }
+
+    public String getPret() {
+        return pret;
+    }
+
+    public void setPret(String pret) {
+        this.pret = pret;
+    }
+
     public String getCategorie() {
         return categorie;
     }
@@ -109,12 +142,16 @@ public class Rezervare implements Parcelable {
                 "zi=" + zi +
                 ", luna=" + luna +
                 ", an=" + an +
+                ", denumireProdus='" + denumireProdus + '\'' +
+                ", descriere='" + descriere + '\'' +
+                ", pret='" + pret + '\'' +
                 ", categorie='" + categorie + '\'' +
                 ", numeServiciu='" + numeServiciu + '\'' +
                 ", numeFurnizor='" + numeFurnizor + '\'' +
                 ", mailClient='" + mailClient + '\'' +
                 '}';
     }
+
 
     @Override
     public int describeContents() {
@@ -126,6 +163,9 @@ public class Rezervare implements Parcelable {
         dest.writeInt(zi);
         dest.writeInt(luna);
         dest.writeInt(an);
+        dest.writeString(denumireProdus);
+        dest.writeString(descriere);
+        dest.writeString(pret);
         dest.writeString(categorie);
         dest.writeString(numeServiciu);
         dest.writeString(numeFurnizor);

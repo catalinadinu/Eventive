@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Rezervare;
+import com.example.catalinadinu.eventive.Clase.RezervariAdapter;
 import com.example.catalinadinu.eventive.Clase.ServiciiAdapter;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 public class VizualizareListaRezervariActivity extends AppCompatActivity {
     private ListView listViewRezervari;
     private ArrayList<Rezervare> listaRezervari = new ArrayList<>();
-    private ArrayList<Serviciu> listaServiciiRezervate = new ArrayList<>();
     private DatabaseReference root;
     private Intent intentVizualizareServiciuRezervat;
 
@@ -40,17 +40,9 @@ public class VizualizareListaRezervariActivity extends AppCompatActivity {
         listViewRezervari.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Serviciu serviciu = listaServiciiRezervate.get(position);
-
-                Rezervare rez = null;
-                for(Rezervare r:listaRezervari){
-                    if(r.getNumeServiciu().equals(serviciu.getDenumire()) && r.getNumeFurnizor().equals(serviciu.getNumeFurnizor())){
-                        rez = r;
-                    }
-                }
+                Rezervare rez = listaRezervari.get(position);
 
                 intentVizualizareServiciuRezervat = new Intent(VizualizareListaRezervariActivity.this, VizualizareServiciuRezervatActivity.class);
-                intentVizualizareServiciuRezervat.putExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_SERVICIU_REZERVAT, serviciu);
                 intentVizualizareServiciuRezervat.putExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_REZERVARE, rez);
                 startActivity(intentVizualizareServiciuRezervat);
             }
@@ -63,7 +55,7 @@ public class VizualizareListaRezervariActivity extends AppCompatActivity {
 
         citireListaRezervariDinFirebase();
 
-        ServiciiAdapter adapter = new ServiciiAdapter(getApplicationContext(), R.layout.card_servicii, listaServiciiRezervate, getLayoutInflater());
+        RezervariAdapter adapter = new RezervariAdapter(getApplicationContext(), R.layout.card_servicii, listaRezervari, getLayoutInflater());
         listViewRezervari.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -77,17 +69,24 @@ public class VizualizareListaRezervariActivity extends AppCompatActivity {
                     int an = rezervare.getValue(Rezervare.class).getAn();
                     int luna = rezervare.getValue(Rezervare.class).getLuna();
                     int zi = rezervare.getValue(Rezervare.class).getZi();
+                    String denumireProdus = rezervare.getValue(Rezervare.class).getDenumireProdus();
+                    String descriere = rezervare.getValue(Rezervare.class).getDescriere();
+                    String pret = rezervare.getValue(Rezervare.class).getPret();
                     String mailClient = rezervare.getValue(Rezervare.class).getMailClient();
                     String numeFurnizor = rezervare.getValue(Rezervare.class).getNumeFurnizor();
                     String numeServiciu = rezervare.getValue(Rezervare.class).getNumeServiciu();
 
-                    Rezervare rez = new Rezervare(zi, luna, an, categorie, numeServiciu, numeFurnizor, mailClient);
+                    Rezervare rez = new Rezervare(zi, luna, an, denumireProdus, descriere, pret, categorie, numeServiciu, numeFurnizor, mailClient);
 
                     if(mailClient.equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
                         listaRezervari.add(rez);
                     }
                 }
-                citireServiciiDinFirebase(listaRezervari);
+
+                if(listaRezervari != null && !listaRezervari.isEmpty()){
+                    ArrayAdapter adapter = (ArrayAdapter) listViewRezervari.getAdapter();
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -95,41 +94,5 @@ public class VizualizareListaRezervariActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void citireServiciiDinFirebase(ArrayList<Rezervare> listaRezervari){
-        for(final Rezervare r:listaRezervari){
-            root.child("Servicii").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot categorie : dataSnapshot.getChildren()){
-                        for(DataSnapshot serviciu : categorie.getChildren()){
-                            String denumire = serviciu.getValue(Serviciu.class).getDenumire();
-                            String descriere = serviciu.getValue(Serviciu.class).getDescriere();
-                            Integer pret = serviciu.getValue(Serviciu.class).getPret();
-                            String numeFurnizor = serviciu.getValue(Serviciu.class).getNumeFurnizor();
-                            String categ = serviciu.getValue(Serviciu.class).getCategorie();
-                            String mailUtiliz = serviciu.getValue(Serviciu.class).getMailUtilizator();
-
-                            Serviciu serv = new Serviciu(denumire,descriere,pret,numeFurnizor,categ,mailUtiliz);
-
-                            if(r.getNumeFurnizor().equals(serv.getNumeFurnizor()) && r.getNumeServiciu().equals(serv.getDenumire())){
-                                listaServiciiRezervate.add(serv);
-                            }
-                        }
-                    }
-
-                    if(listaServiciiRezervate != null && !listaServiciiRezervate.isEmpty()){
-                        ArrayAdapter adapter = (ArrayAdapter) listViewRezervari.getAdapter();
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
     }
 }

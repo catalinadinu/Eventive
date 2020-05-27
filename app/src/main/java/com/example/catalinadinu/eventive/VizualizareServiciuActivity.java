@@ -113,6 +113,9 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                     String mailClient = child.getValue(Rezervare.class).getMailClient();
 
                     Rezervare r = new Rezervare();
+                    r.setNumeServiciu(serviciuDeAfisat.getDenumire());
+                    r.setDescriere(serviciuDeAfisat.getDescriere());
+                    r.setPret(String.valueOf(serviciuDeAfisat.getPret()));
                     r.setZi(zi);
                     r.setLuna(luna);
                     r.setAn(an);
@@ -148,6 +151,9 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                 }
 
                 if(!ziOcupata){
+                    rez.setNumeServiciu(serviciuDeAfisat.getDenumire());
+                    rez.setDescriere(serviciuDeAfisat.getDescriere());
+                    rez.setPret(String.valueOf(serviciuDeAfisat.getPret()));
                     rez.setNumeFurnizor(serviciuDeAfisat.getNumeFurnizor());
                     rez.setNumeServiciu(serviciuDeAfisat.getDenumire());
                     rez.setCategorie(serviciuDeAfisat.getCategorie());

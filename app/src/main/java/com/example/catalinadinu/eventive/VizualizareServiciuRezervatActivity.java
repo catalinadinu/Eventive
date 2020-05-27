@@ -18,7 +18,6 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
     private TextView denumireFurnizor;
     private TextView dataRezervata;
     private Intent intentRezervare;
-    private Serviciu serviciu;
     private Rezervare rezervare;
 
     @Override
@@ -38,15 +37,13 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
         dataRezervata = findViewById(R.id.vizualizare_serviciu_rezervat_data);
 
         intentRezervare = getIntent();
-        if(intentRezervare.hasExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_SERVICIU_REZERVAT) &&
-            intentRezervare.hasExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_REZERVARE)){
-            serviciu = intentRezervare.getParcelableExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_SERVICIU_REZERVAT);
+        if(intentRezervare.hasExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_REZERVARE)){
             rezervare = intentRezervare.getParcelableExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_REZERVARE);
 
-            denumireServiciu.setText(serviciu.getDenumire());
-            descriere.setText(serviciu.getDescriere());
-            pret.setText(String.valueOf(serviciu.getPret()) + " lei");
-            denumireFurnizor.setText(serviciu.getNumeFurnizor());
+            denumireServiciu.setText(rezervare.getDenumireProdus());
+            descriere.setText(rezervare.getDescriere());
+            pret.setText(String.valueOf(rezervare.getPret()) + " lei");
+            denumireFurnizor.setText(rezervare.getNumeFurnizor());
 
             String dataRezervataString = String.valueOf(rezervare.getZi()) + "/ " + String.valueOf(rezervare.getLuna()) +
                     "/ " + String.valueOf(rezervare.getAn());
