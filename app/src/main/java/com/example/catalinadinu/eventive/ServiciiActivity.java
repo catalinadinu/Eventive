@@ -132,6 +132,7 @@ public class ServiciiActivity extends AppCompatActivity {
                     String descriere = child.getValue(Serviciu.class).getDescriere();
                     Integer pret = child.getValue(Serviciu.class).getPret();
                     String denumireFurnizor = child.getValue(Serviciu.class).getNumeFurnizor();
+                    String mailFurnizor = child.getValue(Serviciu.class).getMailUtilizator();
 
                     Serviciu s = new Serviciu();
                     s.setDenumire(denumireServiciu);
@@ -139,6 +140,7 @@ public class ServiciiActivity extends AppCompatActivity {
                     s.setPret(pret);
                     s.setNumeFurnizor(denumireFurnizor);
                     s.setCategorie(finalNumeCategorieFirebase);
+                    s.setMailUtilizator(mailFurnizor);
                     listaServicii.add(s);
                 }
 

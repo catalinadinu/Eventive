@@ -108,23 +108,22 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                     int luna = child.getValue(Rezervare.class).getLuna();
                     int an = child.getValue(Rezervare.class).getAn();
                     String categorie = child.getValue(Rezervare.class).getCategorie();
-                    String numeServiciu = child.getValue(Rezervare.class).getNumeServiciu();
                     String numeFurnizor = child.getValue(Rezervare.class).getNumeFurnizor();
                     String mailClient = child.getValue(Rezervare.class).getMailClient();
 
                     Rezervare r = new Rezervare();
-                    r.setNumeServiciu(serviciuDeAfisat.getDenumire());
+                    r.setDenumireProdus(serviciuDeAfisat.getDenumire());
                     r.setDescriere(serviciuDeAfisat.getDescriere());
                     r.setPret(String.valueOf(serviciuDeAfisat.getPret()));
+                    r.setMailFurnizor(serviciuDeAfisat.getMailUtilizator());
                     r.setZi(zi);
                     r.setLuna(luna);
                     r.setAn(an);
                     r.setCategorie(categorie);
-                    r.setNumeServiciu(numeServiciu);
                     r.setNumeFurnizor(numeFurnizor);
                     r.setMailClient(mailClient);
 
-                    if(r.getNumeServiciu().trim().equalsIgnoreCase(serviciuDeAfisat.getDenumire().trim())){
+                    if(r.getDenumireProdus().trim().equalsIgnoreCase(serviciuDeAfisat.getDenumire().trim())){
                         listaRezervari.add(r);
                     }
                 }
@@ -151,12 +150,12 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                 }
 
                 if(!ziOcupata){
-                    rez.setNumeServiciu(serviciuDeAfisat.getDenumire());
+                    rez.setDenumireProdus(serviciuDeAfisat.getDenumire());
                     rez.setDescriere(serviciuDeAfisat.getDescriere());
                     rez.setPret(String.valueOf(serviciuDeAfisat.getPret()));
                     rez.setNumeFurnizor(serviciuDeAfisat.getNumeFurnizor());
-                    rez.setNumeServiciu(serviciuDeAfisat.getDenumire());
                     rez.setCategorie(serviciuDeAfisat.getCategorie());
+                    rez.setMailFurnizor(serviciuDeAfisat.getMailUtilizator());
                     rez.setMailClient(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     rez.setZi(dayOfMonth);
                     rez.setLuna(monthOfYear + 1);

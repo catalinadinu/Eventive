@@ -11,14 +11,15 @@ public class Rezervare implements Parcelable {
     private String descriere;
     private String pret;
     private String categorie;
-    private String numeServiciu;
     private String numeFurnizor;
     private String mailClient;
+    private String mailFurnizor;
 
     public Rezervare() {
     }
 
-    public Rezervare(int zi, int luna, int an, String denumireProdus, String descriere, String pret, String categorie, String numeServiciu, String numeFurnizor, String mailClient) {
+    public Rezervare(int zi, int luna, int an, String denumireProdus, String descriere, String pret,
+                     String categorie, String numeFurnizor, String mailClient, String mailFurnizor) {
         this.zi = zi;
         this.luna = luna;
         this.an = an;
@@ -26,9 +27,9 @@ public class Rezervare implements Parcelable {
         this.descriere = descriere;
         this.pret = pret;
         this.categorie = categorie;
-        this.numeServiciu = numeServiciu;
         this.numeFurnizor = numeFurnizor;
         this.mailClient = mailClient;
+        this.mailFurnizor = mailFurnizor;
     }
 
     protected Rezervare(Parcel in) {
@@ -39,9 +40,9 @@ public class Rezervare implements Parcelable {
         descriere = in.readString();
         pret = in.readString();
         categorie = in.readString();
-        numeServiciu = in.readString();
         numeFurnizor = in.readString();
         mailClient = in.readString();
+        mailFurnizor = in.readString();
     }
 
     public static final Creator<Rezervare> CREATOR = new Creator<Rezervare>() {
@@ -112,14 +113,6 @@ public class Rezervare implements Parcelable {
         this.categorie = categorie;
     }
 
-    public String getNumeServiciu() {
-        return numeServiciu;
-    }
-
-    public void setNumeServiciu(String numeServiciu) {
-        this.numeServiciu = numeServiciu;
-    }
-
     public String getNumeFurnizor() {
         return numeFurnizor;
     }
@@ -136,6 +129,14 @@ public class Rezervare implements Parcelable {
         this.mailClient = mailClient;
     }
 
+    public String getMailFurnizor() {
+        return mailFurnizor;
+    }
+
+    public void setMailFurnizor(String mailFurnizor) {
+        this.mailFurnizor = mailFurnizor;
+    }
+
     @Override
     public String toString() {
         return "Rezervare{" +
@@ -146,12 +147,11 @@ public class Rezervare implements Parcelable {
                 ", descriere='" + descriere + '\'' +
                 ", pret='" + pret + '\'' +
                 ", categorie='" + categorie + '\'' +
-                ", numeServiciu='" + numeServiciu + '\'' +
                 ", numeFurnizor='" + numeFurnizor + '\'' +
                 ", mailClient='" + mailClient + '\'' +
+                ", mailFurnizor='" + mailFurnizor + '\'' +
                 '}';
     }
-
 
     @Override
     public int describeContents() {
@@ -167,8 +167,8 @@ public class Rezervare implements Parcelable {
         dest.writeString(descriere);
         dest.writeString(pret);
         dest.writeString(categorie);
-        dest.writeString(numeServiciu);
         dest.writeString(numeFurnizor);
         dest.writeString(mailClient);
+        dest.writeString(mailFurnizor);
     }
 }

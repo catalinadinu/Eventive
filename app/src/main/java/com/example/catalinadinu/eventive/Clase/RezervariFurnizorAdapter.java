@@ -13,14 +13,14 @@ import com.example.catalinadinu.eventive.R;
 
 import java.util.List;
 
-public class RezervariAdapter extends ArrayAdapter<Rezervare> {
+public class RezervariFurnizorAdapter extends ArrayAdapter<Rezervare> {
     private Context context;
     private int resource;
     private List<Rezervare> rezervari;
     private LayoutInflater inflater;
 
 
-    public RezervariAdapter(@NonNull Context context, int resource, List<Rezervare> rezervari, LayoutInflater inflater ) {
+    public RezervariFurnizorAdapter(@NonNull Context context, int resource, List<Rezervare> rezervari, LayoutInflater inflater ) {
         super(context, resource, rezervari);
         this.context = context;
         this.resource = resource;
@@ -35,7 +35,7 @@ public class RezervariAdapter extends ArrayAdapter<Rezervare> {
         Rezervare rezervare = rezervari.get(position);
         if(rezervare != null){
             adaugaNumeServiciu(view, rezervare.getDenumireProdus());
-            adaugaNumeFurnizor(view, rezervare.getNumeFurnizor());
+            adaugaMailClient(view, rezervare.getMailClient());
             adaugaPret(view, Integer.parseInt(rezervare.getPret()));
         }
         return view;
@@ -51,10 +51,10 @@ public class RezervariAdapter extends ArrayAdapter<Rezervare> {
         }
     }
 
-    private void adaugaNumeFurnizor(View view, String numeFurnizor){
+    private void adaugaMailClient(View view, String mailClient){
         TextView tv = view.findViewById(R.id.card_servicii_nume_furnizor);
-        if(numeFurnizor != null && !numeFurnizor.trim().isEmpty()){
-            tv.setText(numeFurnizor);
+        if(mailClient != null && !mailClient.trim().isEmpty()){
+            tv.setText("Client: " + mailClient);
         }
         else {
             tv.setText(R.string.nu_exista_date);
