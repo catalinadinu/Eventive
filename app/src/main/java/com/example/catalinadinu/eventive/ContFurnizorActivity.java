@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ContFurnizorActivity extends AppCompatActivity {
 
-    private CardView serviciileMele, setari, info, deconectare;
+    private CardView serviciileMele, rezervarileMele, setari, info, deconectare;
     private FirebaseAuth.AuthStateListener authStateListener;
     private TextView textWelcome;
 
@@ -24,6 +24,7 @@ public class ContFurnizorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cont_furnizor);
 
         serviciileMele = findViewById(R.id.furnizor_listaServicii);
+        rezervarileMele = findViewById(R.id.furnizor_listaRezervari);
         setari = findViewById(R.id.furnizor_setari);
         info = findViewById(R.id.furnizor_info);
         deconectare = findViewById(R.id.furnizor_deconectare);
@@ -36,6 +37,14 @@ public class ContFurnizorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContFurnizorActivity.this, FurnizorServiciileMeleActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        rezervarileMele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContFurnizorActivity.this, FurnizorVizualizareListaRezervariActivity.class);
                 startActivity(intent);
             }
         });
