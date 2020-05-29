@@ -40,7 +40,7 @@ public class FurnizorVizualizareListaRezervariActivity extends AppCompatActivity
 
         listViewRezervari.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 rezervareModificata = listaRezervari.get(position);
                 AlertDialog.Builder builder = new AlertDialog.Builder(FurnizorVizualizareListaRezervariActivity.this);
                 builder.setTitle("Modificati starea rezervarii");
@@ -83,6 +83,10 @@ public class FurnizorVizualizareListaRezervariActivity extends AppCompatActivity
                                             rezervareModificata.getCategorie().equalsIgnoreCase(rez.getCategorie())){
                                         String cheie = rezervare.getKey();
                                         root.child("RezervariFurnizori").child(cheie).child("stareRezervare").setValue(String.valueOf(StareRezervare.FINALIZAT));
+
+                                        ArrayAdapter adapter = (ArrayAdapter) listViewRezervari.getAdapter();
+                                        adapter.notifyDataSetChanged();
+
                                         Toast.makeText(FurnizorVizualizareListaRezervariActivity.this, "Rezervarea a fost marcata ca FINALIZATA.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -142,13 +146,150 @@ public class FurnizorVizualizareListaRezervariActivity extends AppCompatActivity
                 builder.setNegativeButton("ANULATA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        root.child("RezervariFurnizori").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(DataSnapshot rezervare: dataSnapshot.getChildren()){
+                                    String categorie = rezervare.getValue(Rezervare.class).getCategorie();
+                                    int an = rezervare.getValue(Rezervare.class).getAn();
+                                    int luna = rezervare.getValue(Rezervare.class).getLuna();
+                                    int zi = rezervare.getValue(Rezervare.class).getZi();
+                                    String denumireProdus = rezervare.getValue(Rezervare.class).getDenumireProdus();
+                                    String descriere = rezervare.getValue(Rezervare.class).getDescriere();
+                                    String pret = rezervare.getValue(Rezervare.class).getPret();
+                                    String mailClient = rezervare.getValue(Rezervare.class).getMailClient();
+                                    String numeFurnizor = rezervare.getValue(Rezervare.class).getNumeFurnizor();
+                                    String mailFurnizor = rezervare.getValue(Rezervare.class).getMailFurnizor();
+                                    String stare = rezervare.getValue(Rezervare.class).getStareRezervare();
 
+                                    Rezervare rez = new Rezervare(zi, luna, an, denumireProdus, descriere, pret,
+                                            categorie, numeFurnizor, mailClient, mailFurnizor);
+                                    rez.setStareRezervare(stare);
+
+                                    if(rezervareModificata.getCategorie().equalsIgnoreCase(rez.getCategorie()) &&
+                                            String.valueOf(rezervareModificata.getAn()).equalsIgnoreCase(String.valueOf(rez.getAn())) &&
+                                            String.valueOf(rezervareModificata.getLuna()).equalsIgnoreCase(String.valueOf(rez.getLuna())) &&
+                                            String.valueOf(rezervareModificata.getZi()).equalsIgnoreCase(String.valueOf(rez.getZi())) &&
+                                            rezervareModificata.getDenumireProdus().equalsIgnoreCase(rez.getDenumireProdus()) &&
+                                            rezervareModificata.getDescriere().equalsIgnoreCase(rez.getDescriere()) &&
+                                            rezervareModificata.getPret().equalsIgnoreCase(rez.getPret()) &&
+                                            rezervareModificata.getMailClient().equalsIgnoreCase(rez.getMailClient()) &&
+                                            rezervareModificata.getNumeFurnizor().equalsIgnoreCase(rez.getNumeFurnizor()) &&
+                                            rezervareModificata.getMailFurnizor().equalsIgnoreCase(rez.getMailFurnizor()) &&
+                                            rezervareModificata.getCategorie().equalsIgnoreCase(rez.getCategorie())){
+                                        String cheie = rezervare.getKey();
+                                        root.child("RezervariFurnizori").child(cheie).child("stareRezervare").setValue(String.valueOf(StareRezervare.ANULAT));
+
+                                        ArrayAdapter adapter = (ArrayAdapter) listViewRezervari.getAdapter();
+                                        adapter.notifyDataSetChanged();
+
+                                        Toast.makeText(FurnizorVizualizareListaRezervariActivity.this, "Rezervarea a fost marcata ca ANULATA.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        root.child("Rezervari").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(DataSnapshot rezervare: dataSnapshot.getChildren()){
+                                    String categorie = rezervare.getValue(Rezervare.class).getCategorie();
+                                    int an = rezervare.getValue(Rezervare.class).getAn();
+                                    int luna = rezervare.getValue(Rezervare.class).getLuna();
+                                    int zi = rezervare.getValue(Rezervare.class).getZi();
+                                    String denumireProdus = rezervare.getValue(Rezervare.class).getDenumireProdus();
+                                    String descriere = rezervare.getValue(Rezervare.class).getDescriere();
+                                    String pret = rezervare.getValue(Rezervare.class).getPret();
+                                    String mailClient = rezervare.getValue(Rezervare.class).getMailClient();
+                                    String numeFurnizor = rezervare.getValue(Rezervare.class).getNumeFurnizor();
+                                    String mailFurnizor = rezervare.getValue(Rezervare.class).getMailFurnizor();
+                                    String stare = rezervare.getValue(Rezervare.class).getStareRezervare();
+
+                                    Rezervare rez = new Rezervare(zi, luna, an, denumireProdus, descriere, pret,
+                                            categorie, numeFurnizor, mailClient, mailFurnizor);
+                                    rez.setStareRezervare(stare);
+
+                                    if(rezervareModificata.getCategorie().equalsIgnoreCase(rez.getCategorie()) &&
+                                            String.valueOf(rezervareModificata.getAn()).equalsIgnoreCase(String.valueOf(rez.getAn())) &&
+                                            String.valueOf(rezervareModificata.getLuna()).equalsIgnoreCase(String.valueOf(rez.getLuna())) &&
+                                            String.valueOf(rezervareModificata.getZi()).equalsIgnoreCase(String.valueOf(rez.getZi())) &&
+                                            rezervareModificata.getDenumireProdus().equalsIgnoreCase(rez.getDenumireProdus()) &&
+                                            rezervareModificata.getDescriere().equalsIgnoreCase(rez.getDescriere()) &&
+                                            rezervareModificata.getPret().equalsIgnoreCase(rez.getPret()) &&
+                                            rezervareModificata.getMailClient().equalsIgnoreCase(rez.getMailClient()) &&
+                                            rezervareModificata.getNumeFurnizor().equalsIgnoreCase(rez.getNumeFurnizor()) &&
+                                            rezervareModificata.getMailFurnizor().equalsIgnoreCase(rez.getMailFurnizor()) &&
+                                            rezervareModificata.getCategorie().equalsIgnoreCase(rez.getCategorie())){
+                                        String cheie = rezervare.getKey();
+                                        root.child("Rezervari").child(cheie).child("stareRezervare").setValue(String.valueOf(StareRezervare.ANULAT));
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 });
 
                 builder.setNeutralButton("STERGERE REZERVARE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        root.child("RezervariFurnizori").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(DataSnapshot rezervare: dataSnapshot.getChildren()){
+                                    String categorie = rezervare.getValue(Rezervare.class).getCategorie();
+                                    int an = rezervare.getValue(Rezervare.class).getAn();
+                                    int luna = rezervare.getValue(Rezervare.class).getLuna();
+                                    int zi = rezervare.getValue(Rezervare.class).getZi();
+                                    String denumireProdus = rezervare.getValue(Rezervare.class).getDenumireProdus();
+                                    String descriere = rezervare.getValue(Rezervare.class).getDescriere();
+                                    String pret = rezervare.getValue(Rezervare.class).getPret();
+                                    String mailClient = rezervare.getValue(Rezervare.class).getMailClient();
+                                    String numeFurnizor = rezervare.getValue(Rezervare.class).getNumeFurnizor();
+                                    String mailFurnizor = rezervare.getValue(Rezervare.class).getMailFurnizor();
+                                    String stare = rezervare.getValue(Rezervare.class).getStareRezervare();
+
+                                    Rezervare rez = new Rezervare(zi, luna, an, denumireProdus, descriere, pret,
+                                            categorie, numeFurnizor, mailClient, mailFurnizor);
+                                    rez.setStareRezervare(stare);
+
+                                    if(rezervareModificata.getCategorie().equalsIgnoreCase(rez.getCategorie()) &&
+                                            String.valueOf(rezervareModificata.getAn()).equalsIgnoreCase(String.valueOf(rez.getAn())) &&
+                                            String.valueOf(rezervareModificata.getLuna()).equalsIgnoreCase(String.valueOf(rez.getLuna())) &&
+                                            String.valueOf(rezervareModificata.getZi()).equalsIgnoreCase(String.valueOf(rez.getZi())) &&
+                                            rezervareModificata.getDenumireProdus().equalsIgnoreCase(rez.getDenumireProdus()) &&
+                                            rezervareModificata.getDescriere().equalsIgnoreCase(rez.getDescriere()) &&
+                                            rezervareModificata.getPret().equalsIgnoreCase(rez.getPret()) &&
+                                            rezervareModificata.getMailClient().equalsIgnoreCase(rez.getMailClient()) &&
+                                            rezervareModificata.getNumeFurnizor().equalsIgnoreCase(rez.getNumeFurnizor()) &&
+                                            rezervareModificata.getMailFurnizor().equalsIgnoreCase(rez.getMailFurnizor()) &&
+                                            rezervareModificata.getCategorie().equalsIgnoreCase(rez.getCategorie())){
+                                        String cheie = rezervare.getKey();
+                                        root.child("RezervariFurnizori").child(cheie).removeValue();
+                                        listaRezervari.remove(position);
+
+                                        ArrayAdapter adapter = (ArrayAdapter) listViewRezervari.getAdapter();
+                                        adapter.notifyDataSetChanged();
+
+                                        Toast.makeText(FurnizorVizualizareListaRezervariActivity.this, "Rezervarea a fost STEARSA din lista de vizualizare.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 });
 
