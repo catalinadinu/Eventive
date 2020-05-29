@@ -17,6 +17,8 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
     private TextView pret;
     private TextView denumireFurnizor;
     private TextView dataRezervata;
+    private TextView stareRezervare;
+    private TextView mailFurnizor;
     private Intent intentRezervare;
     private Rezervare rezervare;
 
@@ -35,6 +37,8 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
         pret = findViewById(R.id.vizualizare_serviciu_rezervat_pret_serviciu);
         denumireFurnizor = findViewById(R.id.vizualizare_serviciu_rezervat_nume_furnizor);
         dataRezervata = findViewById(R.id.vizualizare_serviciu_rezervat_data);
+        stareRezervare = findViewById(R.id.vizualizare_serviciu_rezervat_stare);
+        mailFurnizor = findViewById(R.id.vizualizare_serviciu_rezervat_mail_furnizor);
 
         intentRezervare = getIntent();
         if(intentRezervare.hasExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_REZERVARE)){
@@ -48,6 +52,9 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
             String dataRezervataString = String.valueOf(rezervare.getZi()) + "/ " + String.valueOf(rezervare.getLuna()) +
                     "/ " + String.valueOf(rezervare.getAn());
             dataRezervata.setText(dataRezervataString);
+
+            stareRezervare.setText(rezervare.getStareRezervare());
+            mailFurnizor.setText(rezervare.getMailFurnizor());
         }
     }
 }

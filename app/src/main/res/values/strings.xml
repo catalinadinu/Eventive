@@ -69,6 +69,7 @@
     <string name="client_caps">CLIENT</string>
     <string name="furnizor_caps">FURNIZOR</string>
     <string name="data_rezervarii">Data rezervarii</string>
+    <string name="starea_rezervarii">Starea rezervarii</string>
 
     <string-array name="categorii">
         <item>Locatie</item>
