@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Rezervare;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
+import com.example.catalinadinu.eventive.Clase.StareRezervare;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -110,6 +111,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                     String categorie = child.getValue(Rezervare.class).getCategorie();
                     String numeFurnizor = child.getValue(Rezervare.class).getNumeFurnizor();
                     String mailClient = child.getValue(Rezervare.class).getMailClient();
+                    String stare = child.getValue(Rezervare.class).getStareRezervare();
 
                     Rezervare r = new Rezervare();
                     r.setDenumireProdus(serviciuDeAfisat.getDenumire());
@@ -122,6 +124,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                     r.setCategorie(categorie);
                     r.setNumeFurnizor(numeFurnizor);
                     r.setMailClient(mailClient);
+                    r.setStareRezervare(stare);
 
                     if(r.getDenumireProdus().trim().equalsIgnoreCase(serviciuDeAfisat.getDenumire().trim())){
                         listaRezervari.add(r);
@@ -160,6 +163,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                     rez.setZi(dayOfMonth);
                     rez.setLuna(monthOfYear + 1);
                     rez.setAn(year);
+                    rez.setStareRezervare(String.valueOf(StareRezervare.NEFINALIZAT));
                 }
 
                 if(ziOcupata){
@@ -170,6 +174,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             root.child("Rezervari").push().setValue(rez);
+                            root.child("RezervariFurnizori").push().setValue(rez);
                             Toast.makeText(VizualizareServiciuActivity.this, "Serviciu rezervat cu succes", Toast.LENGTH_SHORT).show();
                             finish();
                         }

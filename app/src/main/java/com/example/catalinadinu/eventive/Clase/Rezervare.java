@@ -14,6 +14,7 @@ public class Rezervare implements Parcelable {
     private String numeFurnizor;
     private String mailClient;
     private String mailFurnizor;
+    private String stareRezervare;
 
     public Rezervare() {
     }
@@ -30,6 +31,7 @@ public class Rezervare implements Parcelable {
         this.numeFurnizor = numeFurnizor;
         this.mailClient = mailClient;
         this.mailFurnizor = mailFurnizor;
+        this.stareRezervare = String.valueOf(StareRezervare.NEFINALIZAT);
     }
 
     protected Rezervare(Parcel in) {
@@ -137,6 +139,14 @@ public class Rezervare implements Parcelable {
         this.mailFurnizor = mailFurnizor;
     }
 
+    public String getStareRezervare() {
+        return stareRezervare;
+    }
+
+    public void setStareRezervare(String stareRezervare) {
+        this.stareRezervare = stareRezervare;
+    }
+
     @Override
     public String toString() {
         return "Rezervare{" +
@@ -150,6 +160,7 @@ public class Rezervare implements Parcelable {
                 ", numeFurnizor='" + numeFurnizor + '\'' +
                 ", mailClient='" + mailClient + '\'' +
                 ", mailFurnizor='" + mailFurnizor + '\'' +
+                ", stareRezervare='" + stareRezervare + '\'' +
                 '}';
     }
 

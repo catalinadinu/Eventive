@@ -42,7 +42,7 @@ public class FurnizorVizualizareListaRezervariActivity extends AppCompatActivity
     }
 
     private void citireListaRezervariDinFirebase(){
-        root.child("Rezervari").addValueEventListener(new ValueEventListener() {
+        root.child("RezervariFurnizori").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot rezervare : dataSnapshot.getChildren()){
@@ -56,9 +56,11 @@ public class FurnizorVizualizareListaRezervariActivity extends AppCompatActivity
                     String mailClient = rezervare.getValue(Rezervare.class).getMailClient();
                     String numeFurnizor = rezervare.getValue(Rezervare.class).getNumeFurnizor();
                     String mailFurnizor = rezervare.getValue(Rezervare.class).getMailFurnizor();
+                    String stare = rezervare.getValue(Rezervare.class).getStareRezervare();
 
                     Rezervare rez = new Rezervare(zi, luna, an, denumireProdus, descriere, pret,
                             categorie, numeFurnizor, mailClient, mailFurnizor);
+                    rez.setStareRezervare(stare);
 
                     if(mailFurnizor.equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
                         listaRezervari.add(rez);
