@@ -34,6 +34,21 @@ public class Rezervare implements Parcelable {
         this.stareRezervare = String.valueOf(StareRezervare.NEFINALIZAT);
     }
 
+    public Rezervare(int zi, int luna, int an, String denumireProdus, String descriere, String pret, String categorie, String numeFurnizor, String mailClient, String mailFurnizor, String stareRezervare) {
+        this.zi = zi;
+        this.luna = luna;
+        this.an = an;
+        this.denumireProdus = denumireProdus;
+        this.descriere = descriere;
+        this.pret = pret;
+        this.categorie = categorie;
+        this.numeFurnizor = numeFurnizor;
+        this.mailClient = mailClient;
+        this.mailFurnizor = mailFurnizor;
+        this.stareRezervare = stareRezervare;
+    }
+
+
     protected Rezervare(Parcel in) {
         zi = in.readInt();
         luna = in.readInt();
@@ -45,6 +60,7 @@ public class Rezervare implements Parcelable {
         numeFurnizor = in.readString();
         mailClient = in.readString();
         mailFurnizor = in.readString();
+        stareRezervare = in.readString();
     }
 
     public static final Creator<Rezervare> CREATOR = new Creator<Rezervare>() {
@@ -181,5 +197,6 @@ public class Rezervare implements Parcelable {
         dest.writeString(numeFurnizor);
         dest.writeString(mailClient);
         dest.writeString(mailFurnizor);
+        dest.writeString(stareRezervare);
     }
 }

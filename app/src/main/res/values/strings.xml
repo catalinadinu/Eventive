@@ -70,6 +70,8 @@
     <string name="furnizor_caps">FURNIZOR</string>
     <string name="data_rezervarii">Data rezervarii</string>
     <string name="starea_rezervarii">Starea rezervarii</string>
+    <string name="contacteaza_furnizorul">Contacteaza furnizorul</string>
+    <string name="contacteaza_clientul">Contacteaza clientul</string>
 
     <string-array name="categorii">
         <item>Locatie</item>

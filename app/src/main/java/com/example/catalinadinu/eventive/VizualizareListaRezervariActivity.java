@@ -78,8 +78,7 @@ public class VizualizareListaRezervariActivity extends AppCompatActivity {
                     String stare = rezervare.getValue(Rezervare.class).getStareRezervare();
 
                     Rezervare rez = new Rezervare(zi, luna, an, denumireProdus, descriere, pret,
-                            categorie, numeFurnizor, mailClient, mailFurnizor);
-                    rez.setStareRezervare(stare);
+                            categorie, numeFurnizor, mailClient, mailFurnizor, stare);
 
                     if(mailClient.equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
                         listaRezervari.add(rez);

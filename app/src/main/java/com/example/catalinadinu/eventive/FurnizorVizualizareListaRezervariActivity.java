@@ -298,6 +298,17 @@ public class FurnizorVizualizareListaRezervariActivity extends AppCompatActivity
                 return true;
             }
         });
+
+        listViewRezervari.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Rezervare rez = listaRezervari.get(position);
+
+                Intent intent = new Intent(FurnizorVizualizareListaRezervariActivity.this, FurnizorVizualizareServiciuRezervatActivity.class);
+                intent.putExtra(Const.CHEIE_TRIMITERE_VIZUALIZARE_REZERVARE_FURNIZOR, rez);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initComponents(){

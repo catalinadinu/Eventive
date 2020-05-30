@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FurnizorVizualizareListaRezervariActivity"></activity>
+        <activity android:name=".FurnizorVizualizareServiciuRezervatActivity"></activity>
+        <activity android:name=".FurnizorVizualizareListaRezervariActivity" />
         <activity android:name=".VizualizareServiciuRezervatActivity" />
         <activity android:name=".VizualizareListaRezervariActivity" />
         <activity android:name=".FurnizorServiciileMeleActivity" />

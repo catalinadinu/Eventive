@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VizualizareServiciuRezervatActivity"
     android:background="@color/white">
 
     <ScrollView
@@ -21,7 +20,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/vizualizare_serviciu_rezervat_imagine"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_imagine"
                 android:layout_margin="16dp"
                 android:layout_width="225dp"
                 android:layout_height="225dp"
@@ -43,7 +42,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/vizualizare_serviciu_rezervat_denumire_serviciu"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_denumire_serviciu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -73,7 +72,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/vizualizare_serviciu_rezervat_descriere_serviciu"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_descriere_serviciu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -103,7 +102,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/vizualizare_serviciu_rezervat_pret_serviciu"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_pret_serviciu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -133,7 +132,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/vizualizare_serviciu_rezervat_nume_furnizor"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_nume_furnizor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -163,7 +162,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/vizualizare_serviciu_rezervat_data"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -200,7 +199,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/vizualizare_serviciu_rezervat_stare"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_stare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -223,14 +222,14 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="casual"
-                android:text="@string/contacteaza_furnizorul"
+                android:text="@string/contacteaza_clientul"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15dp"
                 android:textStyle="bold"
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/vizualizare_serviciu_rezervat_mail_furnizor"
+                android:id="@+id/furnizor_vizualizare_serviciu_rezervat_mail_client"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
