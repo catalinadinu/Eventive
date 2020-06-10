@@ -1,6 +1,8 @@
 package com.example.catalinadinu.eventive;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,14 +80,16 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
         calendar.setMinDate(System.currentTimeMillis() - 1000);
 
         Intent intentPreluareServiciu = getIntent();
-        tipUtilizator = intentPreluareServiciu.getStringExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_VIZ_SERV);
         serviciuDeAfisat = intentPreluareServiciu.getParcelableExtra(Const.CHEIE_TRIMITERE_SERVICIU_VIZUALIZARE);
+
+        SharedPreferences sp = getSharedPreferences(Const.SP_NUME_FISIER, Context.MODE_PRIVATE);
+        tipUtilizator = sp.getString("tip_utilizator", null);
 
         if(intentPreluareServiciu.hasExtra(Const.CHEIE_TRMIITERE_FLAG_SERVICII_FILTRATE)){
             vizualizareServiciuPropriu = intentPreluareServiciu.getBooleanExtra(Const.CHEIE_TRMIITERE_FLAG_SERVICII_FILTRATE, true);
         }
 
-        if(vizualizareServiciuPropriu || tipUtilizator.equals("furnizor")){
+        if(tipUtilizator.equals("furnizor") || vizualizareServiciuPropriu){
             textView_rezerva.setVisibility(View.GONE);
             textView_data.setVisibility(View.GONE);
             calendar.setVisibility(View.GONE);

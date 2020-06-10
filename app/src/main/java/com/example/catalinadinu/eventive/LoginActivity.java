@@ -1,6 +1,8 @@
 package com.example.catalinadinu.eventive;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -116,6 +118,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             Intent intentDashboard = new Intent(LoginActivity.this, DashboardActivity.class);
                             intentDashboard.putExtra(Const.CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH, tipUtilizator);
+                            SharedPreferences sp = getSharedPreferences(Const.SP_NUME_FISIER, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putString("tip_utilizator", tipUtilizator);
+                            editor.apply();
                             intentDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intentDashboard);
                             finish();

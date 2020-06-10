@@ -1,6 +1,8 @@
 package com.example.catalinadinu.eventive;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.catalinadinu.eventive.Clase.Const;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -60,6 +63,11 @@ public class ContFurnizorActivity extends AppCompatActivity {
         deconectare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sp = getSharedPreferences(Const.SP_NUME_FISIER, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.remove("tip_utilizator");
+                editor.apply();
+
                 FirebaseAuth.getInstance().signOut();
                 Intent intentDeconectare = new Intent(ContFurnizorActivity.this, LoginActivity.class);
                 intentDeconectare.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
