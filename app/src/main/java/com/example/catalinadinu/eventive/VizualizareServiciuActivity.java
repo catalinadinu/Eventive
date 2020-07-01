@@ -3,6 +3,8 @@ package com.example.catalinadinu.eventive;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,15 +19,21 @@ import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Rezervare;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
 import com.example.catalinadinu.eventive.Clase.StareRezervare;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -48,6 +56,9 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
 
     private DatabaseReference root;
 
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +77,9 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         root = FirebaseDatabase.getInstance().getReference();
         imagine = findViewById(R.id.vizualizare_serviciu_imagine);
         denumireServiciu = findViewById(R.id.vizualizare_serviciu_denumire_serviciu);
@@ -102,6 +116,8 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
         denumireFurnizor.setText(serviciuDeAfisat.getNumeFurnizor());
 
         citireValidareSiAdaugareRezervare();
+
+        getImageFromFirebaseStorage();
     }
 
     private void citireValidareSiAdaugareRezervare(){
@@ -187,5 +203,23 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getImageFromFirebaseStorage(){
+        String photoName = FirebaseAuth.getInstance().getCurrentUser().getEmail() + "/" + serviciuDeAfisat.getCategorie() + "/" + serviciuDeAfisat.getDenumire();
+        StorageReference ref = storageReference.child(photoName);
+        try{
+            final File file = File.createTempFile("image", "jpg");
+            ref.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    imagine.setImageBitmap(bitmap);
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
