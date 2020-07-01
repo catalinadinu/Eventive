@@ -72,6 +72,8 @@
     <string name="starea_rezervarii">Starea rezervarii</string>
     <string name="contacteaza_furnizorul">Contacteaza furnizorul</string>
     <string name="contacteaza_clientul">Contacteaza clientul</string>
+    <string name="photo_upload_succes">Fotografia a fost incarcata cu succes.</string>
+    <string name="photo_upload_fail">Incarcarea fotografiei a esuat.</string>
 
     <string-array name="categorii">
         <item>Locatie</item>

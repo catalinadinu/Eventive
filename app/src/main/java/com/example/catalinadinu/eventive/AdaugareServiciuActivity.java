@@ -1,7 +1,11 @@
 package com.example.catalinadinu.eventive;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -16,13 +20,19 @@ import android.widget.Toast;
 
 import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class AdaugareServiciuActivity extends AppCompatActivity {
@@ -39,6 +49,10 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
     private Serviciu serviciuPrimit;
     private Serviciu serviciuEditat;
 
+    private Uri imageUri;
+
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
     private DatabaseReference root;
 
     @Override
@@ -50,6 +64,9 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         intent = getIntent();
         root = FirebaseDatabase.getInstance().getReference();
         imagineServiciu = findViewById(R.id.adaugare_serviciu_imagine);
@@ -74,6 +91,17 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        butonAdaugareImagine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+
+                startActivityForResult(intent, Const.REQUEST_CODE_CHOOSE_IMAGE);
             }
         });
 
@@ -197,5 +225,41 @@ public class AdaugareServiciuActivity extends AppCompatActivity {
         s.setNumeFurnizor(numeFurnizor);
         s.setMailUtilizator(mail);
         return s;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Const.REQUEST_CODE_CHOOSE_IMAGE && resultCode == RESULT_OK
+                && data != null && data.getData() != null){
+            imageUri = data.getData();
+            imagineServiciu.setImageURI(imageUri);
+            try{
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                imagineServiciu.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if(!denumireServiciu.getText().toString().isEmpty()){
+                String photoName = FirebaseAuth.getInstance().getCurrentUser().getEmail() + "/" + categorieAleasaString + "/" + denumireServiciu.getText().toString();
+                StorageReference ref = storageReference.child(photoName);
+                ref.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(getApplicationContext(), R.string.photo_upload_succes, Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), R.string.photo_upload_fail, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            else{
+                Toast.makeText(this, "Completati toate campurile inainte de incarcarea fotografiei", Toast.LENGTH_SHORT).show();
+            }
+
+        }
     }
 }

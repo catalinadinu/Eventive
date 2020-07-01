@@ -1,6 +1,8 @@
 package com.example.catalinadinu.eventive.Clase;
 
 public class Const {
+    public static final int REQUEST_CODE_CHOOSE_IMAGE = 1;
+
     public static final String SP_NUME_FISIER = "utilizator_conectat";
 
     public static final String CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH = "CHEIE_TRIMITERE_TIP_UTILIZATOR_LOGIN_DASH";
