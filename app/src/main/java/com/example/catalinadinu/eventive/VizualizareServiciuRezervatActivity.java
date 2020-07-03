@@ -1,8 +1,12 @@
 package com.example.catalinadinu.eventive;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +14,14 @@ import android.widget.Toast;
 import com.example.catalinadinu.eventive.Clase.Const;
 import com.example.catalinadinu.eventive.Clase.Rezervare;
 import com.example.catalinadinu.eventive.Clase.Serviciu;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
     private ImageView imagine;
@@ -23,6 +35,9 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
     private Intent intentRezervare;
     private Rezervare rezervare;
 
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +47,9 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         imagine = findViewById(R.id.vizualizare_serviciu_rezervat_imagine);
         denumireServiciu = findViewById(R.id.vizualizare_serviciu_rezervat_denumire_serviciu);
         descriere = findViewById(R.id.vizualizare_serviciu_rezervat_descriere_serviciu);
@@ -58,6 +76,34 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Stare: " + rezervare.getStareRezervare(), Toast.LENGTH_SHORT).show();
             mailFurnizor.setText(rezervare.getMailFurnizor());
+        }
+
+        mailFurnizor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendEmail = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+ rezervare.getMailFurnizor()));
+                startActivity(Intent.createChooser(sendEmail, "Choose an email client from..."));
+            }
+        });
+
+        getImageFromFirebaseStorage();
+    }
+
+    private void getImageFromFirebaseStorage(){
+        String photoName = rezervare.getMailFurnizor() + "/" + rezervare.getCategorie() + "/" + rezervare.getDenumireProdus();
+        StorageReference ref = storageReference.child(photoName);
+        try{
+            final File file = File.createTempFile("image", "jpg");
+            ref.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    imagine.setImageBitmap(bitmap);
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

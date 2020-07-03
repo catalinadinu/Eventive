@@ -69,18 +69,6 @@ public class ContactAppActivity extends AppCompatActivity{
                 root.child("Rating").push().setValue(appRating);
             }
         });
-
-//        ratingBar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                float rating = ratingBar.getRating();
-//                AppRating appRating = new AppRating();
-//                appRating.setRating(rating);
-//                appRating.setUser(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-//                root.child("Rating").push().setValue(appRating);
-//                ratingBar.setRating(rating);
-//            }
-//        });
     }
 
     private void initComponents(){

@@ -68,6 +68,8 @@ public class ContClientActivity extends AppCompatActivity {
             }
         });
 
+        setari.setVisibility(View.GONE);
+
         setupFirebaseListener();
 
     }

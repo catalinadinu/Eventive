@@ -206,7 +206,7 @@ public class VizualizareServiciuActivity extends AppCompatActivity {
     }
 
     private void getImageFromFirebaseStorage(){
-        String photoName = FirebaseAuth.getInstance().getCurrentUser().getEmail() + "/" + serviciuDeAfisat.getCategorie() + "/" + serviciuDeAfisat.getDenumire();
+        String photoName = serviciuDeAfisat.getNumeFurnizor() + "/" + serviciuDeAfisat.getCategorie() + "/" + serviciuDeAfisat.getDenumire();
         StorageReference ref = storageReference.child(photoName);
         try{
             final File file = File.createTempFile("image", "jpg");
