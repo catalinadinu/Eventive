@@ -84,8 +84,7 @@ public class FurnizorVizualizareServiciuRezervatActivity extends AppCompatActivi
         });
 
         getImageFromFirebaseStorage();
-
-        Toast.makeText(this, rezervare.getMailFurnizor(), Toast.LENGTH_SHORT).show();rezervare.getMailFurnizor();
+        
     }
 
     private void getImageFromFirebaseStorage(){
