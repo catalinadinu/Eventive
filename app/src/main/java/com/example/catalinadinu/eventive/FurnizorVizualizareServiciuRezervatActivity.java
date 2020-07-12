@@ -84,7 +84,7 @@ public class FurnizorVizualizareServiciuRezervatActivity extends AppCompatActivi
         });
 
         getImageFromFirebaseStorage();
-        
+
     }
 
     private void getImageFromFirebaseStorage(){

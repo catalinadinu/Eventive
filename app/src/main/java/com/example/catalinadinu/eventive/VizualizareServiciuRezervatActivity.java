@@ -74,7 +74,6 @@ public class VizualizareServiciuRezervatActivity extends AppCompatActivity {
 
             stareRezervare.setText(String.valueOf(rezervare.getStareRezervare()));
 
-            Toast.makeText(this, "Stare: " + rezervare.getStareRezervare(), Toast.LENGTH_SHORT).show();
             mailFurnizor.setText(rezervare.getMailFurnizor());
         }
 
